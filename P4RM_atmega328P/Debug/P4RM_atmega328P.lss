@@ -1,0 +1,2178 @@
+
+P4RM_atmega328P.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000c48  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000031  00800100  00800100  00000cbc  2**0
+                  ALLOC
+  2 .comment      00000030  00000000  00000000  00000cbc  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 000001c8  00000000  00000000  00000cec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000022c7  00000000  00000000  00000eb4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000b73  00000000  00000000  0000317b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   000008c1  00000000  00000000  00003cee  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000494  00000000  00000000  000045b0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000095e  00000000  00000000  00004a44  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000beb  00000000  00000000  000053a2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000168  00000000  00000000  00005f8d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 36 00 	jmp	0x6c	; 0x6c <__dtors_end>
+   4:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+   8:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+   c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  10:	0c 94 82 00 	jmp	0x104	; 0x104 <__vector_4>
+  14:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  18:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  1c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__vector_7>
+  20:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  24:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  28:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  2c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  30:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  34:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  38:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  3c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  40:	0c 94 83 01 	jmp	0x306	; 0x306 <__vector_16>
+  44:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  48:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  4c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  50:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  54:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  58:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  5c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  60:	0c 94 aa 00 	jmp	0x154	; 0x154 <__vector_24>
+  64:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+
+00000068 <__ctors_start>:
+  68:	b4 01       	movw	r22, r8
+
+0000006a <__ctors_end>:
+  6a:	b9 01       	movw	r22, r18
+
+0000006c <__dtors_end>:
+  6c:	11 24       	eor	r1, r1
+  6e:	1f be       	out	0x3f, r1	; 63
+  70:	cf ef       	ldi	r28, 0xFF	; 255
+  72:	d8 e0       	ldi	r29, 0x08	; 8
+  74:	de bf       	out	0x3e, r29	; 62
+  76:	cd bf       	out	0x3d, r28	; 61
+
+00000078 <__do_clear_bss>:
+  78:	21 e0       	ldi	r18, 0x01	; 1
+  7a:	a0 e0       	ldi	r26, 0x00	; 0
+  7c:	b1 e0       	ldi	r27, 0x01	; 1
+  7e:	01 c0       	rjmp	.+2      	; 0x82 <.do_clear_bss_start>
+
+00000080 <.do_clear_bss_loop>:
+  80:	1d 92       	st	X+, r1
+
+00000082 <.do_clear_bss_start>:
+  82:	a1 33       	cpi	r26, 0x31	; 49
+  84:	b2 07       	cpc	r27, r18
+  86:	e1 f7       	brne	.-8      	; 0x80 <.do_clear_bss_loop>
+
+00000088 <__do_global_ctors>:
+  88:	10 e0       	ldi	r17, 0x00	; 0
+  8a:	ca e6       	ldi	r28, 0x6A	; 106
+  8c:	d0 e0       	ldi	r29, 0x00	; 0
+  8e:	04 c0       	rjmp	.+8      	; 0x98 <__do_global_ctors+0x10>
+  90:	22 97       	sbiw	r28, 0x02	; 2
+  92:	fe 01       	movw	r30, r28
+  94:	0e 94 13 06 	call	0xc26	; 0xc26 <__tablejump__>
+  98:	c8 36       	cpi	r28, 0x68	; 104
+  9a:	d1 07       	cpc	r29, r17
+  9c:	c9 f7       	brne	.-14     	; 0x90 <__do_global_ctors+0x8>
+  9e:	0e 94 55 00 	call	0xaa	; 0xaa <main>
+  a2:	0c 94 17 06 	jmp	0xc2e	; 0xc2e <__do_global_dtors>
+
+000000a6 <__bad_interrupt>:
+  a6:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000aa <main>:
+ */
+#include "P4RM_atmega328P.h"
+
+int main(void)
+{
+	sei(); //autorise les interruptions
+  aa:	78 94       	sei
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ac:	2f ef       	ldi	r18, 0xFF	; 255
+  ae:	83 ed       	ldi	r24, 0xD3	; 211
+  b0:	90 e3       	ldi	r25, 0x30	; 48
+  b2:	21 50       	subi	r18, 0x01	; 1
+  b4:	80 40       	sbci	r24, 0x00	; 0
+  b6:	90 40       	sbci	r25, 0x00	; 0
+  b8:	e1 f7       	brne	.-8      	; 0xb2 <main+0x8>
+  ba:	00 c0       	rjmp	.+0      	; 0xbc <main+0x12>
+  bc:	00 00       	nop
+	_delay_ms(1000);
+	Robot.Run();
+  be:	8f e0       	ldi	r24, 0x0F	; 15
+  c0:	91 e0       	ldi	r25, 0x01	; 1
+  c2:	0e 94 66 03 	call	0x6cc	; 0x6cc <_ZN6PRobot3RunEv>
+}
+  c6:	80 e0       	ldi	r24, 0x00	; 0
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	08 95       	ret
+
+000000cc <__vector_7>:
+
+ISR(TIMER2_COMPA_vect)
+{
+  cc:	1f 92       	push	r1
+  ce:	0f 92       	push	r0
+  d0:	0f b6       	in	r0, 0x3f	; 63
+  d2:	0f 92       	push	r0
+  d4:	11 24       	eor	r1, r1
+  d6:	8f 93       	push	r24
+	compteur1s++;
+  d8:	80 91 0e 01 	lds	r24, 0x010E
+  dc:	8f 5f       	subi	r24, 0xFF	; 255
+	if (compteur1s == 100)
+  de:	84 36       	cpi	r24, 0x64	; 100
+  e0:	19 f0       	breq	.+6      	; 0xe8 <__vector_7+0x1c>
+	Robot.Run();
+}
+
+ISR(TIMER2_COMPA_vect)
+{
+	compteur1s++;
+  e2:	80 93 0e 01 	sts	0x010E, r24
+  e6:	05 c0       	rjmp	.+10     	; 0xf2 <__vector_7+0x26>
+	if (compteur1s == 100)
+	{
+		compteur1s = 0;
+  e8:	10 92 0e 01 	sts	0x010E, r1
+		flagBatterie = true; //flag qui lance la vérification de l'état de la batterie
+  ec:	81 e0       	ldi	r24, 0x01	; 1
+  ee:	80 93 04 01 	sts	0x0104, r24
+	}
+	
+	flagAsservisement = true; // flag pour la mise a jour du rapport cyclique de la PWM moteur	
+  f2:	81 e0       	ldi	r24, 0x01	; 1
+  f4:	80 93 05 01 	sts	0x0105, r24
+}
+  f8:	8f 91       	pop	r24
+  fa:	0f 90       	pop	r0
+  fc:	0f be       	out	0x3f, r0	; 63
+  fe:	0f 90       	pop	r0
+ 100:	1f 90       	pop	r1
+ 102:	18 95       	reti
+
+00000104 <__vector_4>:
+
+ ISR(PCINT1_vect) //Broche défault du driveur moteur à 1 
+ {  
+ 104:	1f 92       	push	r1
+ 106:	0f 92       	push	r0
+ 108:	0f b6       	in	r0, 0x3f	; 63
+ 10a:	0f 92       	push	r0
+ 10c:	11 24       	eor	r1, r1
+ 10e:	2f 93       	push	r18
+ 110:	3f 93       	push	r19
+ 112:	4f 93       	push	r20
+ 114:	5f 93       	push	r21
+ 116:	6f 93       	push	r22
+ 118:	7f 93       	push	r23
+ 11a:	8f 93       	push	r24
+ 11c:	9f 93       	push	r25
+ 11e:	af 93       	push	r26
+ 120:	bf 93       	push	r27
+ 122:	ef 93       	push	r30
+ 124:	ff 93       	push	r31
+	 // Alors déclenchement du défault driveur moteur
+	 Robot.RDefautDetecter(PSecurite::Nature::DriverMoteur);
+ 126:	61 e0       	ldi	r22, 0x01	; 1
+ 128:	70 e0       	ldi	r23, 0x00	; 0
+ 12a:	8f e0       	ldi	r24, 0x0F	; 15
+ 12c:	91 e0       	ldi	r25, 0x01	; 1
+ 12e:	0e 94 44 03 	call	0x688	; 0x688 <_ZN6PRobot15RDefautDetecterEN9PSecurite6NatureE>
+ }
+ 132:	ff 91       	pop	r31
+ 134:	ef 91       	pop	r30
+ 136:	bf 91       	pop	r27
+ 138:	af 91       	pop	r26
+ 13a:	9f 91       	pop	r25
+ 13c:	8f 91       	pop	r24
+ 13e:	7f 91       	pop	r23
+ 140:	6f 91       	pop	r22
+ 142:	5f 91       	pop	r21
+ 144:	4f 91       	pop	r20
+ 146:	3f 91       	pop	r19
+ 148:	2f 91       	pop	r18
+ 14a:	0f 90       	pop	r0
+ 14c:	0f be       	out	0x3f, r0	; 63
+ 14e:	0f 90       	pop	r0
+ 150:	1f 90       	pop	r1
+ 152:	18 95       	reti
+
+00000154 <__vector_24>:
+ 
+ ISR(TWI_vect) //interuption générer par le composant I2C
+ {
+ 154:	1f 92       	push	r1
+ 156:	0f 92       	push	r0
+ 158:	0f b6       	in	r0, 0x3f	; 63
+ 15a:	0f 92       	push	r0
+ 15c:	11 24       	eor	r1, r1
+ 15e:	2f 93       	push	r18
+ 160:	3f 93       	push	r19
+ 162:	4f 93       	push	r20
+ 164:	5f 93       	push	r21
+ 166:	6f 93       	push	r22
+ 168:	7f 93       	push	r23
+ 16a:	8f 93       	push	r24
+ 16c:	9f 93       	push	r25
+ 16e:	af 93       	push	r26
+ 170:	bf 93       	push	r27
+ 172:	cf 93       	push	r28
+ 174:	ef 93       	push	r30
+ 176:	ff 93       	push	r31
+						1 -> vitesse Progressive
+	-Octet Deux : Consigne de Vitesse entre 0 (0%) et 255 (100%)
+*/	 
+	 uint8_t donnees = 0;
+	 
+	 if (TW_STATUS == TW_SR_SLA_ACK) //si Adresse slave reçu + W et ACK retourné
+ 178:	80 91 b9 00 	lds	r24, 0x00B9
+ 17c:	88 7f       	andi	r24, 0xF8	; 248
+ 17e:	80 36       	cpi	r24, 0x60	; 96
+ 180:	21 f4       	brne	.+8      	; 0x18a <__vector_24+0x36>
+	 {
+		 //début de réception
+		 premieroctet = true;
+ 182:	81 e0       	ldi	r24, 0x01	; 1
+ 184:	80 93 02 01 	sts	0x0102, r24
+ 188:	99 c0       	rjmp	.+306    	; 0x2bc <__vector_24+0x168>
+	 } 
+	 else if (TW_STATUS == TW_SR_DATA_ACK) // si donnees reçu + ACK retourné
+ 18a:	80 91 b9 00 	lds	r24, 0x00B9
+ 18e:	88 7f       	andi	r24, 0xF8	; 248
+ 190:	80 38       	cpi	r24, 0x80	; 128
+ 192:	09 f0       	breq	.+2      	; 0x196 <__vector_24+0x42>
+ 194:	57 c0       	rjmp	.+174    	; 0x244 <__vector_24+0xf0>
+	 {
+		 if (premieroctet) //si premier octet
+ 196:	80 91 02 01 	lds	r24, 0x0102
+ 19a:	88 23       	and	r24, r24
+ 19c:	09 f4       	brne	.+2      	; 0x1a0 <__vector_24+0x4c>
+ 19e:	4a c0       	rjmp	.+148    	; 0x234 <__vector_24+0xe0>
+		 {
+			 donnees = TWDR;
+ 1a0:	c0 91 bb 00 	lds	r28, 0x00BB
+			 if ((donnees & 32) == 1 << 5 ) // si bit 3 = 1 -> consigne sinon on ignore 
+ 1a4:	c5 ff       	sbrs	r28, 5
+ 1a6:	43 c0       	rjmp	.+134    	; 0x22e <__vector_24+0xda>
+			 {
+				 //si donnees reçu différents des donnees enregistrer
+				 if (donnees != (uint8_t)( 32 + vitesseProgressive + (direction<<1) + (enableMoteur<<2) + (renvoieDistance<<3) + (razDefault<<4)))
+ 1a8:	80 91 08 01 	lds	r24, 0x0108
+ 1ac:	20 91 09 01 	lds	r18, 0x0109
+ 1b0:	20 5e       	subi	r18, 0xE0	; 224
+ 1b2:	90 91 0b 01 	lds	r25, 0x010B
+ 1b6:	99 0f       	add	r25, r25
+ 1b8:	92 0f       	add	r25, r18
+ 1ba:	20 91 0a 01 	lds	r18, 0x010A
+ 1be:	22 0f       	add	r18, r18
+ 1c0:	22 0f       	add	r18, r18
+ 1c2:	92 0f       	add	r25, r18
+ 1c4:	28 2f       	mov	r18, r24
+ 1c6:	22 0f       	add	r18, r18
+ 1c8:	22 0f       	add	r18, r18
+ 1ca:	22 0f       	add	r18, r18
+ 1cc:	92 0f       	add	r25, r18
+ 1ce:	20 91 07 01 	lds	r18, 0x0107
+ 1d2:	30 e1       	ldi	r19, 0x10	; 16
+ 1d4:	23 9f       	mul	r18, r19
+ 1d6:	90 0d       	add	r25, r0
+ 1d8:	11 24       	eor	r1, r1
+ 1da:	9c 17       	cp	r25, r28
+ 1dc:	41 f1       	breq	.+80     	; 0x22e <__vector_24+0xda>
+				 { //alors on actualise
+					 actualiserOrdre = true;
+ 1de:	91 e0       	ldi	r25, 0x01	; 1
+ 1e0:	90 93 01 01 	sts	0x0101, r25
+					 vitesseProgressive = (donnees & 1);
+ 1e4:	9c 2f       	mov	r25, r28
+ 1e6:	91 70       	andi	r25, 0x01	; 1
+ 1e8:	90 93 09 01 	sts	0x0109, r25
+					 direction = (donnees & 2)>>1;
+ 1ec:	91 e0       	ldi	r25, 0x01	; 1
+ 1ee:	c1 ff       	sbrs	r28, 1
+ 1f0:	90 e0       	ldi	r25, 0x00	; 0
+ 1f2:	90 93 0b 01 	sts	0x010B, r25
+					 enableMoteur = (donnees & 4)>>2;
+ 1f6:	91 e0       	ldi	r25, 0x01	; 1
+ 1f8:	c2 ff       	sbrs	r28, 2
+ 1fa:	90 e0       	ldi	r25, 0x00	; 0
+ 1fc:	90 93 0a 01 	sts	0x010A, r25
+					 razDefault = (donnees & 16)>>4;
+ 200:	91 e0       	ldi	r25, 0x01	; 1
+ 202:	c4 ff       	sbrs	r28, 4
+ 204:	90 e0       	ldi	r25, 0x00	; 0
+ 206:	90 93 07 01 	sts	0x0107, r25
+					 
+					 //si on renvoie distance passe a 1
+					 if ((renvoieDistance == false) && ((donnees & 8)>>3 == true) && Robot.REtatDefaut()==0)
+ 20a:	81 11       	cpse	r24, r1
+ 20c:	0b c0       	rjmp	.+22     	; 0x224 <__vector_24+0xd0>
+ 20e:	c3 ff       	sbrs	r28, 3
+ 210:	09 c0       	rjmp	.+18     	; 0x224 <__vector_24+0xd0>
+ 212:	8f e0       	ldi	r24, 0x0F	; 15
+ 214:	91 e0       	ldi	r25, 0x01	; 1
+ 216:	0e 94 4a 03 	call	0x694	; 0x694 <_ZN6PRobot11REtatDefautEv>
+ 21a:	81 11       	cpse	r24, r1
+ 21c:	03 c0       	rjmp	.+6      	; 0x224 <__vector_24+0xd0>
+					 { // alors initialisation du compteur timeOut et de la distance à renvoyer
+						TCNT0 =0;
+ 21e:	16 bc       	out	0x26, r1	; 38
+						compteurTimeOut = 0;	
+ 220:	10 92 0d 01 	sts	0x010D, r1
+					 }
+					 renvoieDistance = ((donnees & 8)>>3);
+ 224:	81 e0       	ldi	r24, 0x01	; 1
+ 226:	c3 ff       	sbrs	r28, 3
+ 228:	80 e0       	ldi	r24, 0x00	; 0
+ 22a:	80 93 08 01 	sts	0x0108, r24
+				 }
+				 
+			 }
+			premieroctet = false;
+ 22e:	10 92 02 01 	sts	0x0102, r1
+ 232:	44 c0       	rjmp	.+136    	; 0x2bc <__vector_24+0x168>
+		 }
+		 else //si premier octet déja reçu alors on reçoit la vitesse
+		 { 
+			 // actualisation de la consigne de vitesse
+			 vitesseMoteur=TWDR;
+ 234:	80 91 bb 00 	lds	r24, 0x00BB
+ 238:	80 93 0c 01 	sts	0x010C, r24
+			 actualiserVitesse = true;
+ 23c:	81 e0       	ldi	r24, 0x01	; 1
+ 23e:	80 93 03 01 	sts	0x0103, r24
+ 242:	3c c0       	rjmp	.+120    	; 0x2bc <__vector_24+0x168>
+		 }
+	  }
+	  else if (TW_STATUS == TW_ST_SLA_ACK) //si Adresse slave + R reçu et ACK retourné
+ 244:	80 91 b9 00 	lds	r24, 0x00B9
+ 248:	88 7f       	andi	r24, 0xF8	; 248
+ 24a:	88 3a       	cpi	r24, 0xA8	; 168
+ 24c:	29 f5       	brne	.+74     	; 0x298 <__vector_24+0x144>
+	  { //envoie des données
+		  donnees = Robot.REtatDefaut(); //lecture  et envoie de l'état des défaults
+ 24e:	8f e0       	ldi	r24, 0x0F	; 15
+ 250:	91 e0       	ldi	r25, 0x01	; 1
+ 252:	0e 94 4a 03 	call	0x694	; 0x694 <_ZN6PRobot11REtatDefautEv>
+		  if (donnees != 0) //si défault présent
+ 256:	88 23       	and	r24, r24
+ 258:	b9 f1       	breq	.+110    	; 0x2c8 <__vector_24+0x174>
+		  {
+			  // alors envoie des bits de poids fort de la distance d'arret
+			  donnees += (compteurTimeOut & 0x07)<<3;
+ 25a:	90 91 0d 01 	lds	r25, 0x010D
+ 25e:	97 70       	andi	r25, 0x07	; 7
+ 260:	99 0f       	add	r25, r25
+ 262:	99 0f       	add	r25, r25
+ 264:	99 0f       	add	r25, r25
+ 266:	89 0f       	add	r24, r25
+		  }
+		  if (renvoieDistance == true || donnees != 0)
+ 268:	90 91 08 01 	lds	r25, 0x0108
+ 26c:	91 11       	cpse	r25, r1
+ 26e:	03 c0       	rjmp	.+6      	; 0x276 <__vector_24+0x122>
+ 270:	81 11       	cpse	r24, r1
+ 272:	2f c0       	rjmp	.+94     	; 0x2d2 <__vector_24+0x17e>
+ 274:	0e c0       	rjmp	.+28     	; 0x292 <__vector_24+0x13e>
+		  {
+			 tempDistance=TCNT0;
+ 276:	96 b5       	in	r25, 0x26	; 38
+ 278:	90 93 06 01 	sts	0x0106, r25
+			 if (donnees==0)
+ 27c:	81 11       	cpse	r24, r1
+ 27e:	02 c0       	rjmp	.+4      	; 0x284 <__vector_24+0x130>
+				TCNT0=0;
+ 280:	16 bc       	out	0x26, r1	; 38
+ 282:	80 e0       	ldi	r24, 0x00	; 0
+			 donnees += (tempDistance & 0x80) >>1; 
+ 284:	20 91 06 01 	lds	r18, 0x0106
+ 288:	20 78       	andi	r18, 0x80	; 128
+ 28a:	30 e0       	ldi	r19, 0x00	; 0
+ 28c:	35 95       	asr	r19
+ 28e:	27 95       	ror	r18
+ 290:	82 0f       	add	r24, r18
+		  }
+		  
+		  TWDR = donnees;
+ 292:	80 93 bb 00 	sts	0x00BB, r24
+ 296:	12 c0       	rjmp	.+36     	; 0x2bc <__vector_24+0x168>
+	  }
+	  else if (TW_STATUS== TW_ST_DATA_ACK) //si données envoyée et ACK reçu
+ 298:	80 91 b9 00 	lds	r24, 0x00B9
+ 29c:	88 7f       	andi	r24, 0xF8	; 248
+ 29e:	88 3b       	cpi	r24, 0xB8	; 184
+ 2a0:	31 f4       	brne	.+12     	; 0x2ae <__vector_24+0x15a>
+	  {
+		 //envoie de la distance
+		 TWDR = tempDistance & 0x7f;
+ 2a2:	80 91 06 01 	lds	r24, 0x0106
+ 2a6:	8f 77       	andi	r24, 0x7F	; 127
+ 2a8:	80 93 bb 00 	sts	0x00BB, r24
+ 2ac:	07 c0       	rjmp	.+14     	; 0x2bc <__vector_24+0x168>
+	  }
+	  else if (TW_STATUS == TW_BUS_ERROR) //si erreur sur le bus on réinitialise le peripherique I2C
+ 2ae:	80 91 b9 00 	lds	r24, 0x00B9
+ 2b2:	88 7f       	andi	r24, 0xF8	; 248
+ 2b4:	19 f4       	brne	.+6      	; 0x2bc <__vector_24+0x168>
+		razI2C = true;
+ 2b6:	81 e0       	ldi	r24, 0x01	; 1
+ 2b8:	80 93 00 01 	sts	0x0100, r24
+	TWCR |= (1<<TWINT); //clear le flag qui déclenche la fonction d'interruption (non fait par l'hardware)
+ 2bc:	ec eb       	ldi	r30, 0xBC	; 188
+ 2be:	f0 e0       	ldi	r31, 0x00	; 0
+ 2c0:	80 81       	ld	r24, Z
+ 2c2:	80 68       	ori	r24, 0x80	; 128
+ 2c4:	80 83       	st	Z, r24
+ 2c6:	0d c0       	rjmp	.+26     	; 0x2e2 <__vector_24+0x18e>
+		  if (donnees != 0) //si défault présent
+		  {
+			  // alors envoie des bits de poids fort de la distance d'arret
+			  donnees += (compteurTimeOut & 0x07)<<3;
+		  }
+		  if (renvoieDistance == true || donnees != 0)
+ 2c8:	90 91 08 01 	lds	r25, 0x0108
+ 2cc:	91 11       	cpse	r25, r1
+ 2ce:	05 c0       	rjmp	.+10     	; 0x2da <__vector_24+0x186>
+ 2d0:	e0 cf       	rjmp	.-64     	; 0x292 <__vector_24+0x13e>
+		  {
+			 tempDistance=TCNT0;
+ 2d2:	96 b5       	in	r25, 0x26	; 38
+ 2d4:	90 93 06 01 	sts	0x0106, r25
+ 2d8:	d5 cf       	rjmp	.-86     	; 0x284 <__vector_24+0x130>
+ 2da:	86 b5       	in	r24, 0x26	; 38
+ 2dc:	80 93 06 01 	sts	0x0106, r24
+ 2e0:	cf cf       	rjmp	.-98     	; 0x280 <__vector_24+0x12c>
+		 TWDR = tempDistance & 0x7f;
+	  }
+	  else if (TW_STATUS == TW_BUS_ERROR) //si erreur sur le bus on réinitialise le peripherique I2C
+		razI2C = true;
+	TWCR |= (1<<TWINT); //clear le flag qui déclenche la fonction d'interruption (non fait par l'hardware)
+ }
+ 2e2:	ff 91       	pop	r31
+ 2e4:	ef 91       	pop	r30
+ 2e6:	cf 91       	pop	r28
+ 2e8:	bf 91       	pop	r27
+ 2ea:	af 91       	pop	r26
+ 2ec:	9f 91       	pop	r25
+ 2ee:	8f 91       	pop	r24
+ 2f0:	7f 91       	pop	r23
+ 2f2:	6f 91       	pop	r22
+ 2f4:	5f 91       	pop	r21
+ 2f6:	4f 91       	pop	r20
+ 2f8:	3f 91       	pop	r19
+ 2fa:	2f 91       	pop	r18
+ 2fc:	0f 90       	pop	r0
+ 2fe:	0f be       	out	0x3f, r0	; 63
+ 300:	0f 90       	pop	r0
+ 302:	1f 90       	pop	r1
+ 304:	18 95       	reti
+
+00000306 <__vector_16>:
+ 
+ ISR(TIMER0_OVF_vect) //interruption d'overflow du timer 0 (compteur des pas des roues codeuses)
+ {
+ 306:	1f 92       	push	r1
+ 308:	0f 92       	push	r0
+ 30a:	0f b6       	in	r0, 0x3f	; 63
+ 30c:	0f 92       	push	r0
+ 30e:	11 24       	eor	r1, r1
+ 310:	2f 93       	push	r18
+ 312:	3f 93       	push	r19
+ 314:	4f 93       	push	r20
+ 316:	5f 93       	push	r21
+ 318:	6f 93       	push	r22
+ 31a:	7f 93       	push	r23
+ 31c:	8f 93       	push	r24
+ 31e:	9f 93       	push	r25
+ 320:	af 93       	push	r26
+ 322:	bf 93       	push	r27
+ 324:	ef 93       	push	r30
+ 326:	ff 93       	push	r31
+	if (renvoieDistance) // si renvoie distance
+ 328:	80 91 08 01 	lds	r24, 0x0108
+ 32c:	88 23       	and	r24, r24
+ 32e:	59 f0       	breq	.+22     	; 0x346 <__vector_16+0x40>
+	{
+		Robot.RDefautDetecter(PSecurite::Nature::TimeOut); //alors on déclenche l'erreur
+ 330:	62 e0       	ldi	r22, 0x02	; 2
+ 332:	70 e0       	ldi	r23, 0x00	; 0
+ 334:	8f e0       	ldi	r24, 0x0F	; 15
+ 336:	91 e0       	ldi	r25, 0x01	; 1
+ 338:	0e 94 44 03 	call	0x688	; 0x688 <_ZN6PRobot15RDefautDetecterEN9PSecurite6NatureE>
+		compteurTimeOut++;
+ 33c:	80 91 0d 01 	lds	r24, 0x010D
+ 340:	8f 5f       	subi	r24, 0xFF	; 255
+ 342:	80 93 0d 01 	sts	0x010D, r24
+	}
+ 346:	ff 91       	pop	r31
+ 348:	ef 91       	pop	r30
+ 34a:	bf 91       	pop	r27
+ 34c:	af 91       	pop	r26
+ 34e:	9f 91       	pop	r25
+ 350:	8f 91       	pop	r24
+ 352:	7f 91       	pop	r23
+ 354:	6f 91       	pop	r22
+ 356:	5f 91       	pop	r21
+ 358:	4f 91       	pop	r20
+ 35a:	3f 91       	pop	r19
+ 35c:	2f 91       	pop	r18
+ 35e:	0f 90       	pop	r0
+ 360:	0f be       	out	0x3f, r0	; 63
+ 362:	0f 90       	pop	r0
+ 364:	1f 90       	pop	r1
+ 366:	18 95       	reti
+
+00000368 <_GLOBAL__sub_I_Robot>:
+#include <util/delay.h>
+#include <avr/interrupt.h>
+#include <stdio.h>
+#include "PRobot.h"
+ 
+PRobot Robot;
+ 368:	8f e0       	ldi	r24, 0x0F	; 15
+ 36a:	91 e0       	ldi	r25, 0x01	; 1
+ 36c:	0e 94 1d 03 	call	0x63a	; 0x63a <_ZN6PRobotC1Ev>
+ 370:	08 95       	ret
+
+00000372 <_GLOBAL__sub_D_Robot>:
+ 372:	8f e0       	ldi	r24, 0x0F	; 15
+ 374:	91 e0       	ldi	r25, 0x01	; 1
+ 376:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <_ZN6PRobotD1Ev>
+ 37a:	08 95       	ret
+
+0000037c <_ZN4PI2CD1Ev>:
+{
+	Init();
+} //PI2C
+
+
+PI2C::~PI2C()
+ 37c:	08 95       	ret
+
+0000037e <_ZN4PI2C4InitEv>:
+	
+} //~PI2C
+
+void PI2C::Init()
+{
+	TWAR = (mAdresse<<TWA0); //adresse en mode esclave 
+ 37e:	fc 01       	movw	r30, r24
+ 380:	80 81       	ld	r24, Z
+ 382:	88 0f       	add	r24, r24
+ 384:	ea eb       	ldi	r30, 0xBA	; 186
+ 386:	f0 e0       	ldi	r31, 0x00	; 0
+ 388:	80 83       	st	Z, r24
+	TWAR |= (1<<TWGCE); //reconnaissance de l'adresse générale d'appel (0x00)
+ 38a:	80 81       	ld	r24, Z
+ 38c:	81 60       	ori	r24, 0x01	; 1
+ 38e:	80 83       	st	Z, r24
+	
+	//active l'interruption du TWI et clear le flag qui déclenche la fonction d'interruption (non fait par l'hardware)
+	TWCR = (1<<TWIE)| (1<<TWINT);
+ 390:	81 e8       	ldi	r24, 0x81	; 129
+ 392:	80 93 bc 00 	sts	0x00BC, r24
+ 396:	08 95       	ret
+
+00000398 <_ZN4PI2CC1Eh>:
+*/
+
+
+#include "PI2C.h"
+
+PI2C::PI2C(uint8_t adresse) : mAdresse(adresse)
+ 398:	fc 01       	movw	r30, r24
+ 39a:	60 83       	st	Z, r22
+{
+	Init();
+ 39c:	0e 94 bf 01 	call	0x37e	; 0x37e <_ZN4PI2C4InitEv>
+ 3a0:	08 95       	ret
+
+000003a2 <_ZN4PI2C5StartEv>:
+}
+
+void PI2C::Start()
+{
+	//active l'interface TWI et connecte virtuellement le µC au bus I2C
+	TWCR |= (1<<TWEN)| (1<<TWEA);
+ 3a2:	ec eb       	ldi	r30, 0xBC	; 188
+ 3a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 3a6:	80 81       	ld	r24, Z
+ 3a8:	84 64       	ori	r24, 0x44	; 68
+ 3aa:	80 83       	st	Z, r24
+ 3ac:	08 95       	ret
+
+000003ae <_ZN4PI2C4StopEv>:
+}
+
+void PI2C::Stop()
+{
+	//désactive l'interface TWI et déconnecte virtuellement le µC au bus I2C
+	TWCR &= ~(1<<TWEN)& ~(1<<TWEA);
+ 3ae:	ec eb       	ldi	r30, 0xBC	; 188
+ 3b0:	f0 e0       	ldi	r31, 0x00	; 0
+ 3b2:	80 81       	ld	r24, Z
+ 3b4:	8b 7b       	andi	r24, 0xBB	; 187
+ 3b6:	80 83       	st	Z, r24
+ 3b8:	08 95       	ret
+
+000003ba <_ZN7PMoteurD1Ev>:
+PMoteur::PMoteur() :  mCommande(0), mConsigne(0), mPwmConfigurer(false),mDirection(false)
+{
+	GenererPwm(); //intialisation tu timer 1 pour la PWM
+}
+
+PMoteur::~PMoteur()
+ 3ba:	08 95       	ret
+
+000003bc <_ZN7PMoteur10GenererPwmEv>:
+{	
+	OCR1A = nouvCommande;
+}
+
+void PMoteur::GenererPwm() //initialisation du timer 1
+{
+ 3bc:	cf 93       	push	r28
+ 3be:	df 93       	push	r29
+ 3c0:	ec 01       	movw	r28, r24
+		if (!mPwmConfigurer)
+ 3c2:	8a 85       	ldd	r24, Y+10	; 0x0a
+ 3c4:	81 11       	cpse	r24, r1
+ 3c6:	21 c0       	rjmp	.+66     	; 0x40a <_ZN7PMoteur10GenererPwmEv+0x4e>
+		{
+			TCCR1A = (1 << WGM11);
+ 3c8:	e0 e8       	ldi	r30, 0x80	; 128
+ 3ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 3cc:	82 e0       	ldi	r24, 0x02	; 2
+ 3ce:	80 83       	st	Z, r24
+			TCCR1A &= ~(1 << WGM10);
+ 3d0:	80 81       	ld	r24, Z
+ 3d2:	8e 7f       	andi	r24, 0xFE	; 254
+ 3d4:	80 83       	st	Z, r24
+			TCCR1B = (1 << WGM13)|(1<<WGM12);//PWM en mode 14, fast pwm, TOP=ICR1, (voir doc page 133)
+ 3d6:	a1 e8       	ldi	r26, 0x81	; 129
+ 3d8:	b0 e0       	ldi	r27, 0x00	; 0
+ 3da:	88 e1       	ldi	r24, 0x18	; 24
+ 3dc:	8c 93       	st	X, r24
+			
+			TCCR1A |= (1 << COM1A1);
+ 3de:	80 81       	ld	r24, Z
+ 3e0:	80 68       	ori	r24, 0x80	; 128
+ 3e2:	80 83       	st	Z, r24
+			TCCR1A &= ~(1 << COM1A0);//Clear OC1A on compare match, set OC1A at bottom (non inverting mode)
+ 3e4:	80 81       	ld	r24, Z
+ 3e6:	8f 7b       	andi	r24, 0xBF	; 191
+ 3e8:	80 83       	st	Z, r24
+			
+			TCCR1B |= (1<<CS10);//pas de division de fréquence
+ 3ea:	8c 91       	ld	r24, X
+ 3ec:	81 60       	ori	r24, 0x01	; 1
+ 3ee:	8c 93       	st	X, r24
+			TCCR1B &= ~(1<<CS11 | 1<<CS12);
+ 3f0:	8c 91       	ld	r24, X
+ 3f2:	89 7f       	andi	r24, 0xF9	; 249
+ 3f4:	8c 93       	st	X, r24
+			
+			mNombrePeriode=(uint16_t)((double)(F_CPU)/FREQUENCE_PWM);
+ 3f6:	80 e2       	ldi	r24, 0x20	; 32
+ 3f8:	93 e0       	ldi	r25, 0x03	; 3
+ 3fa:	99 83       	std	Y+1, r25	; 0x01
+ 3fc:	88 83       	st	Y, r24
+			ICR1 = (uint16_t)mNombrePeriode; 
+ 3fe:	90 93 87 00 	sts	0x0087, r25
+ 402:	80 93 86 00 	sts	0x0086, r24
+			mPwmConfigurer=true;
+ 406:	81 e0       	ldi	r24, 0x01	; 1
+ 408:	8a 87       	std	Y+10, r24	; 0x0a
+		}
+	
+}
+ 40a:	df 91       	pop	r29
+ 40c:	cf 91       	pop	r28
+ 40e:	08 95       	ret
+
+00000410 <_ZN7PMoteurC1Ev>:
+ * Created: 12/11/2016 11:43:41
+ *  Author: Aurelien
+ */ 
+#include "Pmoteur.hpp"
+
+PMoteur::PMoteur() :  mCommande(0), mConsigne(0), mPwmConfigurer(false),mDirection(false)
+ 410:	fc 01       	movw	r30, r24
+ 412:	12 82       	std	Z+2, r1	; 0x02
+ 414:	13 82       	std	Z+3, r1	; 0x03
+ 416:	14 82       	std	Z+4, r1	; 0x04
+ 418:	15 82       	std	Z+5, r1	; 0x05
+ 41a:	16 82       	std	Z+6, r1	; 0x06
+ 41c:	17 82       	std	Z+7, r1	; 0x07
+ 41e:	10 86       	std	Z+8, r1	; 0x08
+ 420:	11 86       	std	Z+9, r1	; 0x09
+ 422:	12 86       	std	Z+10, r1	; 0x0a
+ 424:	13 86       	std	Z+11, r1	; 0x0b
+{
+	GenererPwm(); //intialisation tu timer 1 pour la PWM
+ 426:	0e 94 de 01 	call	0x3bc	; 0x3bc <_ZN7PMoteur10GenererPwmEv>
+ 42a:	08 95       	ret
+
+0000042c <_ZN7PMoteur14DemarrerMoteurEv>:
+	
+}
+
+void PMoteur::DemarrerMoteur() //enable la PWM
+{
+	if (mPwmConfigurer && (PINC&1)==0)
+ 42c:	fc 01       	movw	r30, r24
+ 42e:	82 85       	ldd	r24, Z+10	; 0x0a
+ 430:	88 23       	and	r24, r24
+ 432:	11 f0       	breq	.+4      	; 0x438 <_ZN7PMoteur14DemarrerMoteurEv+0xc>
+ 434:	30 9b       	sbis	0x06, 0	; 6
+	{
+		PORTC |= (1<< PORTC1);
+ 436:	41 9a       	sbi	0x08, 1	; 8
+ 438:	08 95       	ret
+
+0000043a <_ZN7PMoteur14EteindreMoteurEv>:
+	}
+}
+
+void PMoteur::EteindreMoteur() //disable la PWM
+{
+	mCommande=0;
+ 43a:	fc 01       	movw	r30, r24
+ 43c:	12 82       	std	Z+2, r1	; 0x02
+ 43e:	13 82       	std	Z+3, r1	; 0x03
+ 440:	14 82       	std	Z+4, r1	; 0x04
+ 442:	15 82       	std	Z+5, r1	; 0x05
+	PORTC&= ~(1 << PORTC1);
+ 444:	41 98       	cbi	0x08, 1	; 8
+ 446:	08 95       	ret
+
+00000448 <_ZN7PMoteur16ChangerDirectionEb>:
+	
+}
+
+void PMoteur::ChangerDirection(bool nouvDirection) //change l'etat de la broche reliè a l'entrée qui définit le sens de rotation des moteurs
+{
+	mDirection=nouvDirection;
+ 448:	fc 01       	movw	r30, r24
+ 44a:	63 87       	std	Z+11, r22	; 0x0b
+	if (nouvDirection)
+ 44c:	66 23       	and	r22, r22
+ 44e:	11 f0       	breq	.+4      	; 0x454 <_ZN7PMoteur16ChangerDirectionEb+0xc>
+	{
+		PORTB |=(1<<PORTB2);
+ 450:	2a 9a       	sbi	0x05, 2	; 5
+ 452:	08 95       	ret
+	} 
+	else
+	{
+		PORTB &= ~(1<<PORTB2);
+ 454:	2a 98       	cbi	0x05, 2	; 5
+ 456:	08 95       	ret
+
+00000458 <_ZN7PMoteur15ChangerConsigneEh>:
+	}
+}
+
+void PMoteur::ChangerConsigne(uint8_t nouvConsigne) //enregistre une nouvelle consigne de vitesse reçu de la RPI
+{
+ 458:	cf 93       	push	r28
+ 45a:	df 93       	push	r29
+ 45c:	ec 01       	movw	r28, r24
+	mConsigne=(double)(nouvConsigne*3.1372549);
+ 45e:	70 e0       	ldi	r23, 0x00	; 0
+ 460:	80 e0       	ldi	r24, 0x00	; 0
+ 462:	90 e0       	ldi	r25, 0x00	; 0
+ 464:	0e 94 fa 04 	call	0x9f4	; 0x9f4 <__floatsisf>
+ 468:	29 ec       	ldi	r18, 0xC9	; 201
+ 46a:	38 ec       	ldi	r19, 0xC8	; 200
+ 46c:	48 e4       	ldi	r20, 0x48	; 72
+ 46e:	50 e4       	ldi	r21, 0x40	; 64
+ 470:	0e 94 ae 05 	call	0xb5c	; 0xb5c <__mulsf3>
+ 474:	6e 83       	std	Y+6, r22	; 0x06
+ 476:	7f 83       	std	Y+7, r23	; 0x07
+ 478:	88 87       	std	Y+8, r24	; 0x08
+ 47a:	99 87       	std	Y+9, r25	; 0x09
+}
+ 47c:	df 91       	pop	r29
+ 47e:	cf 91       	pop	r28
+ 480:	08 95       	ret
+
+00000482 <_ZN7PMoteur14CalculCommandeEv>:
+
+void PMoteur::CalculCommande() //calcul la nouvelle commande en fonction de la commande actuelle, de la consigne et de l'option vitesse progressive
+{
+ 482:	4f 92       	push	r4
+ 484:	5f 92       	push	r5
+ 486:	6f 92       	push	r6
+ 488:	7f 92       	push	r7
+ 48a:	8f 92       	push	r8
+ 48c:	9f 92       	push	r9
+ 48e:	af 92       	push	r10
+ 490:	bf 92       	push	r11
+ 492:	cf 92       	push	r12
+ 494:	df 92       	push	r13
+ 496:	ef 92       	push	r14
+ 498:	ff 92       	push	r15
+ 49a:	cf 93       	push	r28
+ 49c:	df 93       	push	r29
+ 49e:	ec 01       	movw	r28, r24
+	if (vitesseProgressive)
+ 4a0:	80 91 09 01 	lds	r24, 0x0109
+ 4a4:	88 23       	and	r24, r24
+ 4a6:	09 f4       	brne	.+2      	; 0x4aa <_ZN7PMoteur14CalculCommandeEv+0x28>
+ 4a8:	4b c0       	rjmp	.+150    	; 0x540 <_ZN7PMoteur14CalculCommandeEv+0xbe>
+	{
+		
+		if (mCommande>=mConsigne+10)
+ 4aa:	8a 80       	ldd	r8, Y+2	; 0x02
+ 4ac:	9b 80       	ldd	r9, Y+3	; 0x03
+ 4ae:	ac 80       	ldd	r10, Y+4	; 0x04
+ 4b0:	bd 80       	ldd	r11, Y+5	; 0x05
+ 4b2:	c5 01       	movw	r24, r10
+ 4b4:	b4 01       	movw	r22, r8
+ 4b6:	0e 94 fa 04 	call	0x9f4	; 0x9f4 <__floatsisf>
+ 4ba:	2b 01       	movw	r4, r22
+ 4bc:	3c 01       	movw	r6, r24
+ 4be:	ce 80       	ldd	r12, Y+6	; 0x06
+ 4c0:	df 80       	ldd	r13, Y+7	; 0x07
+ 4c2:	e8 84       	ldd	r14, Y+8	; 0x08
+ 4c4:	f9 84       	ldd	r15, Y+9	; 0x09
+ 4c6:	20 e0       	ldi	r18, 0x00	; 0
+ 4c8:	30 e0       	ldi	r19, 0x00	; 0
+ 4ca:	40 e2       	ldi	r20, 0x20	; 32
+ 4cc:	51 e4       	ldi	r21, 0x41	; 65
+ 4ce:	c7 01       	movw	r24, r14
+ 4d0:	b6 01       	movw	r22, r12
+ 4d2:	0e 94 5f 04 	call	0x8be	; 0x8be <__addsf3>
+ 4d6:	9b 01       	movw	r18, r22
+ 4d8:	ac 01       	movw	r20, r24
+ 4da:	c3 01       	movw	r24, r6
+ 4dc:	b2 01       	movw	r22, r4
+ 4de:	0e 94 aa 05 	call	0xb54	; 0xb54 <__gesf2>
+ 4e2:	88 23       	and	r24, r24
+ 4e4:	54 f0       	brlt	.+20     	; 0x4fa <_ZN7PMoteur14CalculCommandeEv+0x78>
+		{
+				mCommande -= 10;
+ 4e6:	8a e0       	ldi	r24, 0x0A	; 10
+ 4e8:	88 1a       	sub	r8, r24
+ 4ea:	91 08       	sbc	r9, r1
+ 4ec:	a1 08       	sbc	r10, r1
+ 4ee:	b1 08       	sbc	r11, r1
+ 4f0:	8a 82       	std	Y+2, r8	; 0x02
+ 4f2:	9b 82       	std	Y+3, r9	; 0x03
+ 4f4:	ac 82       	std	Y+4, r10	; 0x04
+ 4f6:	bd 82       	std	Y+5, r11	; 0x05
+ 4f8:	2d c0       	rjmp	.+90     	; 0x554 <_ZN7PMoteur14CalculCommandeEv+0xd2>
+		}
+		else if (mCommande<= mConsigne-10)
+ 4fa:	20 e0       	ldi	r18, 0x00	; 0
+ 4fc:	30 e0       	ldi	r19, 0x00	; 0
+ 4fe:	40 e2       	ldi	r20, 0x20	; 32
+ 500:	51 e4       	ldi	r21, 0x41	; 65
+ 502:	c7 01       	movw	r24, r14
+ 504:	b6 01       	movw	r22, r12
+ 506:	0e 94 5e 04 	call	0x8bc	; 0x8bc <__subsf3>
+ 50a:	9b 01       	movw	r18, r22
+ 50c:	ac 01       	movw	r20, r24
+ 50e:	c3 01       	movw	r24, r6
+ 510:	b2 01       	movw	r22, r4
+ 512:	0e 94 c3 04 	call	0x986	; 0x986 <__cmpsf2>
+ 516:	18 16       	cp	r1, r24
+ 518:	54 f0       	brlt	.+20     	; 0x52e <_ZN7PMoteur14CalculCommandeEv+0xac>
+		{
+			mCommande +=10;
+ 51a:	8a e0       	ldi	r24, 0x0A	; 10
+ 51c:	88 0e       	add	r8, r24
+ 51e:	91 1c       	adc	r9, r1
+ 520:	a1 1c       	adc	r10, r1
+ 522:	b1 1c       	adc	r11, r1
+ 524:	8a 82       	std	Y+2, r8	; 0x02
+ 526:	9b 82       	std	Y+3, r9	; 0x03
+ 528:	ac 82       	std	Y+4, r10	; 0x04
+ 52a:	bd 82       	std	Y+5, r11	; 0x05
+ 52c:	13 c0       	rjmp	.+38     	; 0x554 <_ZN7PMoteur14CalculCommandeEv+0xd2>
+		}
+		else 
+		{
+			mCommande=(int32_t)mConsigne;
+ 52e:	c7 01       	movw	r24, r14
+ 530:	b6 01       	movw	r22, r12
+ 532:	0e 94 c7 04 	call	0x98e	; 0x98e <__fixsfsi>
+ 536:	6a 83       	std	Y+2, r22	; 0x02
+ 538:	7b 83       	std	Y+3, r23	; 0x03
+ 53a:	8c 83       	std	Y+4, r24	; 0x04
+ 53c:	9d 83       	std	Y+5, r25	; 0x05
+ 53e:	0a c0       	rjmp	.+20     	; 0x554 <_ZN7PMoteur14CalculCommandeEv+0xd2>
+		}
+	}
+	else 
+		mCommande=mConsigne;
+ 540:	6e 81       	ldd	r22, Y+6	; 0x06
+ 542:	7f 81       	ldd	r23, Y+7	; 0x07
+ 544:	88 85       	ldd	r24, Y+8	; 0x08
+ 546:	99 85       	ldd	r25, Y+9	; 0x09
+ 548:	0e 94 c7 04 	call	0x98e	; 0x98e <__fixsfsi>
+ 54c:	6a 83       	std	Y+2, r22	; 0x02
+ 54e:	7b 83       	std	Y+3, r23	; 0x03
+ 550:	8c 83       	std	Y+4, r24	; 0x04
+ 552:	9d 83       	std	Y+5, r25	; 0x05
+		
+	if (mCommande>800)
+ 554:	4a 81       	ldd	r20, Y+2	; 0x02
+ 556:	5b 81       	ldd	r21, Y+3	; 0x03
+ 558:	6c 81       	ldd	r22, Y+4	; 0x04
+ 55a:	7d 81       	ldd	r23, Y+5	; 0x05
+ 55c:	41 32       	cpi	r20, 0x21	; 33
+ 55e:	83 e0       	ldi	r24, 0x03	; 3
+ 560:	58 07       	cpc	r21, r24
+ 562:	61 05       	cpc	r22, r1
+ 564:	71 05       	cpc	r23, r1
+ 566:	4c f0       	brlt	.+18     	; 0x57a <_ZN7PMoteur14CalculCommandeEv+0xf8>
+	{
+		mCommande=800;
+ 568:	40 e2       	ldi	r20, 0x20	; 32
+ 56a:	53 e0       	ldi	r21, 0x03	; 3
+ 56c:	60 e0       	ldi	r22, 0x00	; 0
+ 56e:	70 e0       	ldi	r23, 0x00	; 0
+ 570:	4a 83       	std	Y+2, r20	; 0x02
+ 572:	5b 83       	std	Y+3, r21	; 0x03
+ 574:	6c 83       	std	Y+4, r22	; 0x04
+ 576:	7d 83       	std	Y+5, r23	; 0x05
+ 578:	06 c0       	rjmp	.+12     	; 0x586 <_ZN7PMoteur14CalculCommandeEv+0x104>
+	} 
+	else if(mCommande<0)
+ 57a:	77 23       	and	r23, r23
+ 57c:	24 f4       	brge	.+8      	; 0x586 <_ZN7PMoteur14CalculCommandeEv+0x104>
+	{
+		mCommande=0;
+ 57e:	1a 82       	std	Y+2, r1	; 0x02
+ 580:	1b 82       	std	Y+3, r1	; 0x03
+ 582:	1c 82       	std	Y+4, r1	; 0x04
+ 584:	1d 82       	std	Y+5, r1	; 0x05
+	}
+	
+	ChangerCommande((uint16_t)(mCommande));
+ 586:	8a 81       	ldd	r24, Y+2	; 0x02
+ 588:	9b 81       	ldd	r25, Y+3	; 0x03
+	
+}
+
+void PMoteur::ChangerCommande(uint16_t nouvCommande) //applique le nouveau rapport cyclique de la pwm
+{	
+	OCR1A = nouvCommande;
+ 58a:	90 93 89 00 	sts	0x0089, r25
+ 58e:	80 93 88 00 	sts	0x0088, r24
+	{
+		mCommande=0;
+	}
+	
+	ChangerCommande((uint16_t)(mCommande));
+ 592:	df 91       	pop	r29
+ 594:	cf 91       	pop	r28
+ 596:	ff 90       	pop	r15
+ 598:	ef 90       	pop	r14
+ 59a:	df 90       	pop	r13
+ 59c:	cf 90       	pop	r12
+ 59e:	bf 90       	pop	r11
+ 5a0:	af 90       	pop	r10
+ 5a2:	9f 90       	pop	r9
+ 5a4:	8f 90       	pop	r8
+ 5a6:	7f 90       	pop	r7
+ 5a8:	6f 90       	pop	r6
+ 5aa:	5f 90       	pop	r5
+ 5ac:	4f 90       	pop	r4
+ 5ae:	08 95       	ret
+
+000005b0 <_ZN6PRobotD1Ev>:
+	mI2C.Start();
+	
+} //PRobot
+
+// default destructor
+PRobot::~PRobot()
+ 5b0:	ef 92       	push	r14
+ 5b2:	ff 92       	push	r15
+ 5b4:	0f 93       	push	r16
+ 5b6:	1f 93       	push	r17
+ 5b8:	cf 93       	push	r28
+ 5ba:	df 93       	push	r29
+ 5bc:	ec 01       	movw	r28, r24
+{
+	mMoteur.EteindreMoteur();
+ 5be:	7c 01       	movw	r14, r24
+ 5c0:	85 e0       	ldi	r24, 0x05	; 5
+ 5c2:	e8 0e       	add	r14, r24
+ 5c4:	f1 1c       	adc	r15, r1
+ 5c6:	c7 01       	movw	r24, r14
+ 5c8:	0e 94 1d 02 	call	0x43a	; 0x43a <_ZN7PMoteur14EteindreMoteurEv>
+	mI2C.Stop();
+ 5cc:	8e 01       	movw	r16, r28
+ 5ce:	0c 5f       	subi	r16, 0xFC	; 252
+ 5d0:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5d2:	c8 01       	movw	r24, r16
+ 5d4:	0e 94 d7 01 	call	0x3ae	; 0x3ae <_ZN4PI2C4StopEv>
+	mI2C.Start();
+	
+} //PRobot
+
+// default destructor
+PRobot::~PRobot()
+ 5d8:	ce 01       	movw	r24, r28
+ 5da:	41 96       	adiw	r24, 0x11	; 17
+ 5dc:	0e 94 c7 03 	call	0x78e	; 0x78e <_ZN14PRouesCodeusesD1Ev>
+ 5e0:	c7 01       	movw	r24, r14
+ 5e2:	0e 94 dd 01 	call	0x3ba	; 0x3ba <_ZN7PMoteurD1Ev>
+ 5e6:	c8 01       	movw	r24, r16
+ 5e8:	0e 94 be 01 	call	0x37c	; 0x37c <_ZN4PI2CD1Ev>
+ 5ec:	ce 01       	movw	r24, r28
+ 5ee:	0e 94 de 03 	call	0x7bc	; 0x7bc <_ZN9PSecuriteD1Ev>
+{
+	mMoteur.EteindreMoteur();
+	mI2C.Stop();
+	
+} //~PRobot
+ 5f2:	df 91       	pop	r29
+ 5f4:	cf 91       	pop	r28
+ 5f6:	1f 91       	pop	r17
+ 5f8:	0f 91       	pop	r16
+ 5fa:	ff 90       	pop	r15
+ 5fc:	ef 90       	pop	r14
+ 5fe:	08 95       	ret
+
+00000600 <_ZN6PRobot15ConfigTimer10msEv>:
+	}
+}
+
+void PRobot::ConfigTimer10ms() //configure le timer 2 qui permet de cadencer certain appel de fonction
+{
+	ASSR &= (~(1<<EXCLK)) & (~(1<<AS2));
+ 600:	e6 eb       	ldi	r30, 0xB6	; 182
+ 602:	f0 e0       	ldi	r31, 0x00	; 0
+ 604:	80 81       	ld	r24, Z
+ 606:	8f 79       	andi	r24, 0x9F	; 159
+ 608:	80 83       	st	Z, r24
+
+	TCCR2A &= (~(1<<COM2A1))& (~(1<<COM2A0))& (~(1<<COM2B1))& (~(1<<COM2B0)); //OC0A et OC0B non connecté au timer0
+ 60a:	e0 eb       	ldi	r30, 0xB0	; 176
+ 60c:	f0 e0       	ldi	r31, 0x00	; 0
+ 60e:	80 81       	ld	r24, Z
+ 610:	8f 70       	andi	r24, 0x0F	; 15
+ 612:	80 83       	st	Z, r24
+	//mode CTC TOP=OCRA
+	TCCR2A &= ~(1<<WGM20);
+ 614:	80 81       	ld	r24, Z
+ 616:	8e 7f       	andi	r24, 0xFE	; 254
+ 618:	80 83       	st	Z, r24
+	TCCR2A |= (1<<WGM21);
+ 61a:	80 81       	ld	r24, Z
+ 61c:	82 60       	ori	r24, 0x02	; 2
+ 61e:	80 83       	st	Z, r24
+	TCCR2B = ~(1<<WGM22);
+ 620:	e1 eb       	ldi	r30, 0xB1	; 177
+ 622:	f0 e0       	ldi	r31, 0x00	; 0
+ 624:	87 ef       	ldi	r24, 0xF7	; 247
+ 626:	80 83       	st	Z, r24
+	
+	//predescaler 1024  -> clk
+	TCCR2B = (1<<CS20) | (1<<CS21) | (1<<CS22);
+ 628:	87 e0       	ldi	r24, 0x07	; 7
+ 62a:	80 83       	st	Z, r24
+	OCR2A =157;
+ 62c:	8d e9       	ldi	r24, 0x9D	; 157
+ 62e:	80 93 b3 00 	sts	0x00B3, r24
+	TIMSK2 = (1<<OCIE2A);
+ 632:	82 e0       	ldi	r24, 0x02	; 2
+ 634:	80 93 70 00 	sts	0x0070, r24
+ 638:	08 95       	ret
+
+0000063a <_ZN6PRobotC1Ev>:
+
+
+#include "PRobot.h"
+
+// default constructor
+PRobot::PRobot(): mI2C(0x20), menableMoteur(false) //i2c 0x20 = coté intérupteur (droite)
+ 63a:	0f 93       	push	r16
+ 63c:	1f 93       	push	r17
+ 63e:	cf 93       	push	r28
+ 640:	df 93       	push	r29
+ 642:	ec 01       	movw	r28, r24
+ 644:	0e 94 fa 03 	call	0x7f4	; 0x7f4 <_ZN9PSecuriteC1Ev>
+ 648:	8e 01       	movw	r16, r28
+ 64a:	0c 5f       	subi	r16, 0xFC	; 252
+ 64c:	1f 4f       	sbci	r17, 0xFF	; 255
+ 64e:	60 e2       	ldi	r22, 0x20	; 32
+ 650:	c8 01       	movw	r24, r16
+ 652:	0e 94 cc 01 	call	0x398	; 0x398 <_ZN4PI2CC1Eh>
+ 656:	ce 01       	movw	r24, r28
+ 658:	05 96       	adiw	r24, 0x05	; 5
+ 65a:	0e 94 08 02 	call	0x410	; 0x410 <_ZN7PMoteurC1Ev>
+ 65e:	ce 01       	movw	r24, r28
+ 660:	41 96       	adiw	r24, 0x11	; 17
+ 662:	0e 94 db 03 	call	0x7b6	; 0x7b6 <_ZN14PRouesCodeusesC1Ev>
+ 666:	1a 8a       	std	Y+18, r1	; 0x12
+{
+	DDRD=0;//Port D en Entrée
+ 668:	1a b8       	out	0x0a, r1	; 10
+	DDRB = 0b00000111;//PB0 a PB2 en sortie
+ 66a:	87 e0       	ldi	r24, 0x07	; 7
+ 66c:	84 b9       	out	0x04, r24	; 4
+	DDRC = 0b00000010;
+ 66e:	82 e0       	ldi	r24, 0x02	; 2
+ 670:	87 b9       	out	0x07, r24	; 7
+
+	ConfigTimer10ms();
+ 672:	ce 01       	movw	r24, r28
+ 674:	0e 94 00 03 	call	0x600	; 0x600 <_ZN6PRobot15ConfigTimer10msEv>
+	mI2C.Start();
+ 678:	c8 01       	movw	r24, r16
+ 67a:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <_ZN4PI2C5StartEv>
+	
+} //PRobot
+ 67e:	df 91       	pop	r29
+ 680:	cf 91       	pop	r28
+ 682:	1f 91       	pop	r17
+ 684:	0f 91       	pop	r16
+ 686:	08 95       	ret
+
+00000688 <_ZN6PRobot15RDefautDetecterEN9PSecurite6NatureE>:
+	
+}
+
+void PRobot::RDefautDetecter(PSecurite::Nature nature) //transmet a Psecurite d'un nouveau défaut survenu dans une fonction d'interruption
+{
+	mSecurite.DefautDetecte(nature, mMoteur);
+ 688:	ac 01       	movw	r20, r24
+ 68a:	4b 5f       	subi	r20, 0xFB	; 251
+ 68c:	5f 4f       	sbci	r21, 0xFF	; 255
+ 68e:	0e 94 05 04 	call	0x80a	; 0x80a <_ZN9PSecurite13DefautDetecteENS_6NatureER7PMoteur>
+ 692:	08 95       	ret
+
+00000694 <_ZN6PRobot11REtatDefautEv>:
+}
+
+uint8_t PRobot::REtatDefaut() //recupère l'etat des defauts dans Psecurite et le transmet à la fonction d'interruption qui en a fait la demmande
+{
+	return mSecurite.EtatDefaut();
+ 694:	0e 94 25 04 	call	0x84a	; 0x84a <_ZN9PSecurite10EtatDefautEv>
+}
+ 698:	08 95       	ret
+
+0000069a <_ZN6PRobot12EnableMoteurEb>:
+
+void PRobot::EnableMoteur(bool enableMoteur) //gère la mise en marche ou non des moteurs
+{
+ 69a:	cf 93       	push	r28
+ 69c:	df 93       	push	r29
+ 69e:	ec 01       	movw	r28, r24
+	if (menableMoteur == false && enableMoteur == true)
+ 6a0:	8a 89       	ldd	r24, Y+18	; 0x12
+ 6a2:	81 11       	cpse	r24, r1
+ 6a4:	09 c0       	rjmp	.+18     	; 0x6b8 <_ZN6PRobot12EnableMoteurEb+0x1e>
+ 6a6:	66 23       	and	r22, r22
+ 6a8:	71 f0       	breq	.+28     	; 0x6c6 <_ZN6PRobot12EnableMoteurEb+0x2c>
+	{
+		mMoteur.DemarrerMoteur();
+ 6aa:	ce 01       	movw	r24, r28
+ 6ac:	05 96       	adiw	r24, 0x05	; 5
+ 6ae:	0e 94 16 02 	call	0x42c	; 0x42c <_ZN7PMoteur14DemarrerMoteurEv>
+		menableMoteur=true;
+ 6b2:	81 e0       	ldi	r24, 0x01	; 1
+ 6b4:	8a 8b       	std	Y+18, r24	; 0x12
+ 6b6:	07 c0       	rjmp	.+14     	; 0x6c6 <_ZN6PRobot12EnableMoteurEb+0x2c>
+	}
+	else if (menableMoteur == true && enableMoteur == false)
+ 6b8:	61 11       	cpse	r22, r1
+ 6ba:	05 c0       	rjmp	.+10     	; 0x6c6 <_ZN6PRobot12EnableMoteurEb+0x2c>
+	{
+		mMoteur.EteindreMoteur();
+ 6bc:	ce 01       	movw	r24, r28
+ 6be:	05 96       	adiw	r24, 0x05	; 5
+ 6c0:	0e 94 1d 02 	call	0x43a	; 0x43a <_ZN7PMoteur14EteindreMoteurEv>
+		menableMoteur=false;
+ 6c4:	1a 8a       	std	Y+18, r1	; 0x12
+	}
+ 6c6:	df 91       	pop	r29
+ 6c8:	cf 91       	pop	r28
+ 6ca:	08 95       	ret
+
+000006cc <_ZN6PRobot3RunEv>:
+	
+} //~PRobot
+
+
+void PRobot::Run()
+{
+ 6cc:	ec 01       	movw	r28, r24
+	while (true) //boucle principale du programme : gère les 4 autres classes  
+	{
+		//appelle les fonctions voulu en fonction des différents flag et état du sytèmes.
+		if ((actualiserVitesse) && (mSecurite.EtatDefaut() == 0))
+		{
+			mMoteur.ChangerConsigne(vitesseMoteur);
+ 6ce:	8c 01       	movw	r16, r24
+ 6d0:	0b 5f       	subi	r16, 0xFB	; 251
+ 6d2:	1f 4f       	sbci	r17, 0xFF	; 255
+			mSecurite.RAZDefaut();
+			razDefault=0;
+		}
+		if (razI2C)
+		{
+			mI2C.Stop();
+ 6d4:	7c 01       	movw	r14, r24
+ 6d6:	84 e0       	ldi	r24, 0x04	; 4
+ 6d8:	e8 0e       	add	r14, r24
+ 6da:	f1 1c       	adc	r15, r1
+void PRobot::Run()
+{
+	while (true) //boucle principale du programme : gère les 4 autres classes  
+	{
+		//appelle les fonctions voulu en fonction des différents flag et état du sytèmes.
+		if ((actualiserVitesse) && (mSecurite.EtatDefaut() == 0))
+ 6dc:	80 91 03 01 	lds	r24, 0x0103
+ 6e0:	88 23       	and	r24, r24
+ 6e2:	61 f0       	breq	.+24     	; 0x6fc <_ZN6PRobot3RunEv+0x30>
+ 6e4:	ce 01       	movw	r24, r28
+ 6e6:	0e 94 25 04 	call	0x84a	; 0x84a <_ZN9PSecurite10EtatDefautEv>
+ 6ea:	81 11       	cpse	r24, r1
+ 6ec:	07 c0       	rjmp	.+14     	; 0x6fc <_ZN6PRobot3RunEv+0x30>
+		{
+			mMoteur.ChangerConsigne(vitesseMoteur);
+ 6ee:	60 91 0c 01 	lds	r22, 0x010C
+ 6f2:	c8 01       	movw	r24, r16
+ 6f4:	0e 94 2c 02 	call	0x458	; 0x458 <_ZN7PMoteur15ChangerConsigneEh>
+			actualiserVitesse = false;
+ 6f8:	10 92 03 01 	sts	0x0103, r1
+		}
+		if ((actualiserOrdre) && (mSecurite.EtatDefaut() == 0))
+ 6fc:	80 91 01 01 	lds	r24, 0x0101
+ 700:	88 23       	and	r24, r24
+ 702:	89 f0       	breq	.+34     	; 0x726 <_ZN6PRobot3RunEv+0x5a>
+ 704:	ce 01       	movw	r24, r28
+ 706:	0e 94 25 04 	call	0x84a	; 0x84a <_ZN9PSecurite10EtatDefautEv>
+ 70a:	81 11       	cpse	r24, r1
+ 70c:	0c c0       	rjmp	.+24     	; 0x726 <_ZN6PRobot3RunEv+0x5a>
+		{
+			EnableMoteur(enableMoteur);
+ 70e:	60 91 0a 01 	lds	r22, 0x010A
+ 712:	ce 01       	movw	r24, r28
+ 714:	0e 94 4d 03 	call	0x69a	; 0x69a <_ZN6PRobot12EnableMoteurEb>
+			mMoteur.ChangerDirection(direction);
+ 718:	60 91 0b 01 	lds	r22, 0x010B
+ 71c:	c8 01       	movw	r24, r16
+ 71e:	0e 94 24 02 	call	0x448	; 0x448 <_ZN7PMoteur16ChangerDirectionEb>
+			actualiserOrdre = false;
+ 722:	10 92 01 01 	sts	0x0101, r1
+		}
+		
+		if (flagAsservisement && menableMoteur)
+ 726:	80 91 05 01 	lds	r24, 0x0105
+ 72a:	88 23       	and	r24, r24
+ 72c:	41 f0       	breq	.+16     	; 0x73e <_ZN6PRobot3RunEv+0x72>
+ 72e:	8a 89       	ldd	r24, Y+18	; 0x12
+ 730:	88 23       	and	r24, r24
+ 732:	29 f0       	breq	.+10     	; 0x73e <_ZN6PRobot3RunEv+0x72>
+		{
+			mMoteur.CalculCommande();
+ 734:	c8 01       	movw	r24, r16
+ 736:	0e 94 41 02 	call	0x482	; 0x482 <_ZN7PMoteur14CalculCommandeEv>
+			flagAsservisement = false;
+ 73a:	10 92 05 01 	sts	0x0105, r1
+		}
+		
+		if (flagBatterie)
+ 73e:	80 91 04 01 	lds	r24, 0x0104
+ 742:	88 23       	and	r24, r24
+ 744:	21 f0       	breq	.+8      	; 0x74e <_ZN6PRobot3RunEv+0x82>
+			mSecurite.VerifierBatterie(mMoteur);
+ 746:	b8 01       	movw	r22, r16
+ 748:	ce 01       	movw	r24, r28
+ 74a:	0e 94 3f 04 	call	0x87e	; 0x87e <_ZN9PSecurite16VerifierBatterieER7PMoteur>
+
+		if (razDefault)
+ 74e:	80 91 07 01 	lds	r24, 0x0107
+ 752:	88 23       	and	r24, r24
+ 754:	29 f0       	breq	.+10     	; 0x760 <_ZN6PRobot3RunEv+0x94>
+		{
+			mSecurite.RAZDefaut();
+ 756:	ce 01       	movw	r24, r28
+ 758:	0e 94 2f 04 	call	0x85e	; 0x85e <_ZN9PSecurite9RAZDefautEv>
+			razDefault=0;
+ 75c:	10 92 07 01 	sts	0x0107, r1
+		}
+		if (razI2C)
+ 760:	80 91 00 01 	lds	r24, 0x0100
+ 764:	88 23       	and	r24, r24
+ 766:	09 f4       	brne	.+2      	; 0x76a <_ZN6PRobot3RunEv+0x9e>
+ 768:	b9 cf       	rjmp	.-142    	; 0x6dc <_ZN6PRobot3RunEv+0x10>
+		{
+			mI2C.Stop();
+ 76a:	c7 01       	movw	r24, r14
+ 76c:	0e 94 d7 01 	call	0x3ae	; 0x3ae <_ZN4PI2C4StopEv>
+ 770:	8f e9       	ldi	r24, 0x9F	; 159
+ 772:	9f e0       	ldi	r25, 0x0F	; 15
+ 774:	01 97       	sbiw	r24, 0x01	; 1
+ 776:	f1 f7       	brne	.-4      	; 0x774 <_ZN6PRobot3RunEv+0xa8>
+ 778:	00 c0       	rjmp	.+0      	; 0x77a <_ZN6PRobot3RunEv+0xae>
+ 77a:	00 00       	nop
+			_delay_ms(1);
+			mI2C.Init();
+ 77c:	c7 01       	movw	r24, r14
+ 77e:	0e 94 bf 01 	call	0x37e	; 0x37e <_ZN4PI2C4InitEv>
+			mI2C.Start();
+ 782:	c7 01       	movw	r24, r14
+ 784:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <_ZN4PI2C5StartEv>
+			razI2C = false;
+ 788:	10 92 00 01 	sts	0x0100, r1
+ 78c:	a7 cf       	rjmp	.-178    	; 0x6dc <_ZN6PRobot3RunEv+0x10>
+
+0000078e <_ZN14PRouesCodeusesD1Ev>:
+{
+	ConfigCompteur();
+} //PRouesCodeuses
+
+// default destructor
+PRouesCodeuses::~PRouesCodeuses()
+ 78e:	08 95       	ret
+
+00000790 <_ZN14PRouesCodeuses14ConfigCompteurEv>:
+} //~PRouesCodeuses
+
+void PRouesCodeuses::ConfigCompteur()
+{
+	
+	TCCR0A &= (~(1<<COM0A1))& (~(1<<COM0A0))& (~(1<<COM0B1))& (~(1<<COM0B0)); //OC0A et OC0B non connecté au timer0
+ 790:	84 b5       	in	r24, 0x24	; 36
+ 792:	8f 70       	andi	r24, 0x0F	; 15
+ 794:	84 bd       	out	0x24, r24	; 36
+	//mode normal TOP=255
+	TCCR0A &= ~(1<<WGM00) & (~(1<<WGM01));
+ 796:	84 b5       	in	r24, 0x24	; 36
+ 798:	8c 7f       	andi	r24, 0xFC	; 252
+ 79a:	84 bd       	out	0x24, r24	; 36
+	TCCR0B = ~(1<<WGM02); 
+ 79c:	87 ef       	ldi	r24, 0xF7	; 247
+ 79e:	85 bd       	out	0x25, r24	; 37
+	
+	//clk -> front montant sur T0
+	TCCR0B |= (1<<CS02) | (1<<CS01) | (1<<CS00);
+ 7a0:	85 b5       	in	r24, 0x25	; 37
+ 7a2:	87 60       	ori	r24, 0x07	; 7
+ 7a4:	85 bd       	out	0x25, r24	; 37
+	
+	TIMSK0 = (1<<TOIE0); // interruption quand la valeur du compteur atteint la valeur du registre de comparaison OCR0A	
+ 7a6:	ee e6       	ldi	r30, 0x6E	; 110
+ 7a8:	f0 e0       	ldi	r31, 0x00	; 0
+ 7aa:	81 e0       	ldi	r24, 0x01	; 1
+ 7ac:	80 83       	st	Z, r24
+	TIMSK0 &= ~(1<<OCIE0B)& ~(1<<OCIE0A);
+ 7ae:	80 81       	ld	r24, Z
+ 7b0:	89 7f       	andi	r24, 0xF9	; 249
+ 7b2:	80 83       	st	Z, r24
+ 7b4:	08 95       	ret
+
+000007b6 <_ZN14PRouesCodeusesC1Ev>:
+#include "PRouesCodeuses.h"
+
+// default constructor
+PRouesCodeuses::PRouesCodeuses()
+{
+	ConfigCompteur();
+ 7b6:	0e 94 c8 03 	call	0x790	; 0x790 <_ZN14PRouesCodeuses14ConfigCompteurEv>
+ 7ba:	08 95       	ret
+
+000007bc <_ZN9PSecuriteD1Ev>:
+{
+	ConfigInterruptExt();
+	ConfigCANFreeRunning();
+}
+
+PSecurite::~PSecurite()
+ 7bc:	08 95       	ret
+
+000007be <_ZN9PSecurite20ConfigCANFreeRunningEv>:
+void PSecurite::ConfigCANFreeRunning()
+{
+	//Configuration du CAN
+	
+	//VREF=Tension sur broche AVCC donc 5V
+	ADMUX = (1<<REFS0); 
+ 7be:	ec e7       	ldi	r30, 0x7C	; 124
+ 7c0:	f0 e0       	ldi	r31, 0x00	; 0
+ 7c2:	80 e4       	ldi	r24, 0x40	; 64
+ 7c4:	80 83       	st	Z, r24
+	ADMUX &= ~(1<<REFS1);
+ 7c6:	80 81       	ld	r24, Z
+ 7c8:	8f 77       	andi	r24, 0x7F	; 127
+ 7ca:	80 83       	st	Z, r24
+	// Canal 3 du CAN broche PC3
+	ADMUX |= (1<<MUX0)|(1<<MUX1); 
+ 7cc:	80 81       	ld	r24, Z
+ 7ce:	83 60       	ori	r24, 0x03	; 3
+ 7d0:	80 83       	st	Z, r24
+	ADMUX &= ~(1<<MUX2)& ~(1<<MUX3);
+ 7d2:	80 81       	ld	r24, Z
+ 7d4:	83 7f       	andi	r24, 0xF3	; 243
+ 7d6:	80 83       	st	Z, r24
+	
+	ADCSRA = (1 << ADPS2)|(1 << ADPS1)|(1 << ADPS0);//Horloge CAN = Quartz / 128 =125kHz
+ 7d8:	ea e7       	ldi	r30, 0x7A	; 122
+ 7da:	f0 e0       	ldi	r31, 0x00	; 0
+ 7dc:	87 e0       	ldi	r24, 0x07	; 7
+ 7de:	80 83       	st	Z, r24
+	ADCSRA |= (1 << ADEN)|(1<<ADATE);//CAN ON et mode Free-running
+ 7e0:	80 81       	ld	r24, Z
+ 7e2:	80 6a       	ori	r24, 0xA0	; 160
+ 7e4:	80 83       	st	Z, r24
+	ADCSRA &= ~(1 << ADIE);//pas d'interruption
+ 7e6:	80 81       	ld	r24, Z
+ 7e8:	87 7f       	andi	r24, 0xF7	; 247
+ 7ea:	80 83       	st	Z, r24
+	
+	//ADSC=1 Lancement Conversion CAN
+	ADCSRA |= (1 << ADSC);
+ 7ec:	80 81       	ld	r24, Z
+ 7ee:	80 64       	ori	r24, 0x40	; 64
+ 7f0:	80 83       	st	Z, r24
+ 7f2:	08 95       	ret
+
+000007f4 <_ZN9PSecuriteC1Ev>:
+ * Created: 23/12/2016 22:11:18
+ *  Author: Aurelien
+ */ 
+#include "PSecurite.h"
+
+PSecurite::PSecurite() :cptBat(0)
+ 7f4:	fc 01       	movw	r30, r24
+ 7f6:	13 82       	std	Z+3, r1	; 0x03
+	
+}
+
+void PSecurite::ConfigInterruptExt()
+{
+	PCMSK1 = (1<<PCINT8);// interruption uniquement sur PCINT8
+ 7f8:	21 e0       	ldi	r18, 0x01	; 1
+ 7fa:	20 93 6c 00 	sts	0x006C, r18
+	PCICR = (1<<PCIE1);//activation de l'interruption sur les pins PCINT[14:8]
+ 7fe:	22 e0       	ldi	r18, 0x02	; 2
+ 800:	20 93 68 00 	sts	0x0068, r18
+#include "PSecurite.h"
+
+PSecurite::PSecurite() :cptBat(0)
+{
+	ConfigInterruptExt();
+	ConfigCANFreeRunning();
+ 804:	0e 94 df 03 	call	0x7be	; 0x7be <_ZN9PSecurite20ConfigCANFreeRunningEv>
+ 808:	08 95       	ret
+
+0000080a <_ZN9PSecurite13DefautDetecteENS_6NatureER7PMoteur>:
+	ADCSRA |= (1 << ADSC);
+
+}
+
+void PSecurite::DefautDetecte(Nature nature,PMoteur &Moteur)
+{
+ 80a:	0f 93       	push	r16
+ 80c:	1f 93       	push	r17
+ 80e:	cf 93       	push	r28
+ 810:	df 93       	push	r29
+ 812:	8c 01       	movw	r16, r24
+ 814:	eb 01       	movw	r28, r22
+	//si on detecte un default
+	
+	//on etteint le moteur
+	Moteur.EteindreMoteur();
+ 816:	ca 01       	movw	r24, r20
+ 818:	0e 94 1d 02 	call	0x43a	; 0x43a <_ZN7PMoteur14EteindreMoteurEv>
+	
+	//on met le flag de default approprié
+	if (nature == Nature::DriverMoteur)
+ 81c:	c1 30       	cpi	r28, 0x01	; 1
+ 81e:	d1 05       	cpc	r29, r1
+ 820:	21 f4       	brne	.+8      	; 0x82a <_ZN9PSecurite13DefautDetecteENS_6NatureER7PMoteur+0x20>
+		mDefaultDriver = 1;
+ 822:	81 e0       	ldi	r24, 0x01	; 1
+ 824:	f8 01       	movw	r30, r16
+ 826:	81 83       	std	Z+1, r24	; 0x01
+ 828:	0b c0       	rjmp	.+22     	; 0x840 <_ZN9PSecurite13DefautDetecteENS_6NatureER7PMoteur+0x36>
+		
+	else if	(nature == Nature::Batterie)
+ 82a:	20 97       	sbiw	r28, 0x00	; 0
+ 82c:	21 f4       	brne	.+8      	; 0x836 <_ZN9PSecurite13DefautDetecteENS_6NatureER7PMoteur+0x2c>
+			mDefaultBatterie = 1;
+ 82e:	81 e0       	ldi	r24, 0x01	; 1
+ 830:	f8 01       	movw	r30, r16
+ 832:	80 83       	st	Z, r24
+ 834:	05 c0       	rjmp	.+10     	; 0x840 <_ZN9PSecurite13DefautDetecteENS_6NatureER7PMoteur+0x36>
+			
+	else if (nature == Nature::TimeOut)
+ 836:	22 97       	sbiw	r28, 0x02	; 2
+ 838:	19 f4       	brne	.+6      	; 0x840 <_ZN9PSecurite13DefautDetecteENS_6NatureER7PMoteur+0x36>
+			mDefaultTimeOut = 1;
+ 83a:	81 e0       	ldi	r24, 0x01	; 1
+ 83c:	f8 01       	movw	r30, r16
+ 83e:	82 83       	std	Z+2, r24	; 0x02
+}
+ 840:	df 91       	pop	r29
+ 842:	cf 91       	pop	r28
+ 844:	1f 91       	pop	r17
+ 846:	0f 91       	pop	r16
+ 848:	08 95       	ret
+
+0000084a <_ZN9PSecurite10EtatDefautEv>:
+
+
+uint8_t PSecurite::EtatDefaut()
+{
+ 84a:	fc 01       	movw	r30, r24
+	//on renvoie les flag de défault mise en forme pour la transmission
+	return ((mDefaultDriver<<2) + (mDefaultBatterie<<1) + mDefaultTimeOut); 
+ 84c:	91 81       	ldd	r25, Z+1	; 0x01
+ 84e:	99 0f       	add	r25, r25
+ 850:	99 0f       	add	r25, r25
+ 852:	80 81       	ld	r24, Z
+ 854:	88 0f       	add	r24, r24
+ 856:	89 0f       	add	r24, r25
+ 858:	92 81       	ldd	r25, Z+2	; 0x02
+}
+ 85a:	89 0f       	add	r24, r25
+ 85c:	08 95       	ret
+
+0000085e <_ZN9PSecurite9RAZDefautEv>:
+
+void PSecurite::RAZDefaut()
+{
+ 85e:	fc 01       	movw	r30, r24
+	//si pas de défault alors on réinitialise les flag de défault
+	if (ADC>730)
+ 860:	80 91 78 00 	lds	r24, 0x0078
+ 864:	90 91 79 00 	lds	r25, 0x0079
+ 868:	8b 3d       	cpi	r24, 0xDB	; 219
+ 86a:	92 40       	sbci	r25, 0x02	; 2
+ 86c:	08 f0       	brcs	.+2      	; 0x870 <_ZN9PSecurite9RAZDefautEv+0x12>
+	{
+		mDefaultBatterie = false;
+ 86e:	10 82       	st	Z, r1
+	}
+	if ((PINC & 1) == 0)
+ 870:	30 9b       	sbis	0x06, 0	; 6
+	{
+		mDefaultDriver = false;
+ 872:	11 82       	std	Z+1, r1	; 0x01
+	}
+	mDefaultTimeOut = false;
+ 874:	12 82       	std	Z+2, r1	; 0x02
+	TCNT0 = 0;
+ 876:	16 bc       	out	0x26, r1	; 38
+	compteurTimeOut = 0;
+ 878:	10 92 0d 01 	sts	0x010D, r1
+ 87c:	08 95       	ret
+
+0000087e <_ZN9PSecurite16VerifierBatterieER7PMoteur>:
+}
+
+bool PSecurite::VerifierBatterie(PMoteur &Moteur)
+{
+ 87e:	cf 93       	push	r28
+ 880:	df 93       	push	r29
+ 882:	ec 01       	movw	r28, r24
+	//vérifie la tension aux borne de la batterie
+	flagBatterie = false;
+ 884:	10 92 04 01 	sts	0x0104, r1
+	if (ADC<=710) //si la tension est inferieure à 10.5V
+ 888:	20 91 78 00 	lds	r18, 0x0078
+ 88c:	30 91 79 00 	lds	r19, 0x0079
+ 890:	27 3c       	cpi	r18, 0xC7	; 199
+ 892:	32 40       	sbci	r19, 0x02	; 2
+ 894:	60 f4       	brcc	.+24     	; 0x8ae <_ZN9PSecurite16VerifierBatterieER7PMoteur+0x30>
+	{
+		cptBat++;
+ 896:	8b 81       	ldd	r24, Y+3	; 0x03
+ 898:	8f 5f       	subi	r24, 0xFF	; 255
+ 89a:	8b 83       	std	Y+3, r24	; 0x03
+		
+		if (cptBat>=10)
+ 89c:	8a 30       	cpi	r24, 0x0A	; 10
+ 89e:	50 f0       	brcs	.+20     	; 0x8b4 <_ZN9PSecurite16VerifierBatterieER7PMoteur+0x36>
+void PSecurite::DefautDetecte(Nature nature,PMoteur &Moteur)
+{
+	//si on detecte un default
+	
+	//on etteint le moteur
+	Moteur.EteindreMoteur();
+ 8a0:	cb 01       	movw	r24, r22
+ 8a2:	0e 94 1d 02 	call	0x43a	; 0x43a <_ZN7PMoteur14EteindreMoteurEv>
+	//on met le flag de default approprié
+	if (nature == Nature::DriverMoteur)
+		mDefaultDriver = 1;
+		
+	else if	(nature == Nature::Batterie)
+			mDefaultBatterie = 1;
+ 8a6:	81 e0       	ldi	r24, 0x01	; 1
+ 8a8:	88 83       	st	Y, r24
+		
+		if (cptBat>=10)
+		{
+		//alors on déclenche le défault batterie
+		DefautDetecte(PSecurite::Nature::Batterie, Moteur);
+		 return false;
+ 8aa:	80 e0       	ldi	r24, 0x00	; 0
+ 8ac:	04 c0       	rjmp	.+8      	; 0x8b6 <_ZN9PSecurite16VerifierBatterieER7PMoteur+0x38>
+		else 
+			return true;
+	}
+	else
+		{
+			cptBat=0;
+ 8ae:	1b 82       	std	Y+3, r1	; 0x03
+		 return true;
+ 8b0:	81 e0       	ldi	r24, 0x01	; 1
+ 8b2:	01 c0       	rjmp	.+2      	; 0x8b6 <_ZN9PSecurite16VerifierBatterieER7PMoteur+0x38>
+		DefautDetecte(PSecurite::Nature::Batterie, Moteur);
+		 return false;
+		 cptBat=0;
+		}
+		else 
+			return true;
+ 8b4:	81 e0       	ldi	r24, 0x01	; 1
+	else
+		{
+			cptBat=0;
+		 return true;
+		}
+ 8b6:	df 91       	pop	r29
+ 8b8:	cf 91       	pop	r28
+ 8ba:	08 95       	ret
+
+000008bc <__subsf3>:
+ 8bc:	50 58       	subi	r21, 0x80	; 128
+
+000008be <__addsf3>:
+ 8be:	bb 27       	eor	r27, r27
+ 8c0:	aa 27       	eor	r26, r26
+ 8c2:	0e d0       	rcall	.+28     	; 0x8e0 <__addsf3x>
+ 8c4:	0d c1       	rjmp	.+538    	; 0xae0 <__fp_round>
+ 8c6:	fe d0       	rcall	.+508    	; 0xac4 <__fp_pscA>
+ 8c8:	30 f0       	brcs	.+12     	; 0x8d6 <__addsf3+0x18>
+ 8ca:	03 d1       	rcall	.+518    	; 0xad2 <__fp_pscB>
+ 8cc:	20 f0       	brcs	.+8      	; 0x8d6 <__addsf3+0x18>
+ 8ce:	31 f4       	brne	.+12     	; 0x8dc <__addsf3+0x1e>
+ 8d0:	9f 3f       	cpi	r25, 0xFF	; 255
+ 8d2:	11 f4       	brne	.+4      	; 0x8d8 <__addsf3+0x1a>
+ 8d4:	1e f4       	brtc	.+6      	; 0x8dc <__addsf3+0x1e>
+ 8d6:	f3 c0       	rjmp	.+486    	; 0xabe <__fp_nan>
+ 8d8:	0e f4       	brtc	.+2      	; 0x8dc <__addsf3+0x1e>
+ 8da:	e0 95       	com	r30
+ 8dc:	e7 fb       	bst	r30, 7
+ 8de:	e9 c0       	rjmp	.+466    	; 0xab2 <__fp_inf>
+
+000008e0 <__addsf3x>:
+ 8e0:	e9 2f       	mov	r30, r25
+ 8e2:	0f d1       	rcall	.+542    	; 0xb02 <__fp_split3>
+ 8e4:	80 f3       	brcs	.-32     	; 0x8c6 <__addsf3+0x8>
+ 8e6:	ba 17       	cp	r27, r26
+ 8e8:	62 07       	cpc	r22, r18
+ 8ea:	73 07       	cpc	r23, r19
+ 8ec:	84 07       	cpc	r24, r20
+ 8ee:	95 07       	cpc	r25, r21
+ 8f0:	18 f0       	brcs	.+6      	; 0x8f8 <__addsf3x+0x18>
+ 8f2:	71 f4       	brne	.+28     	; 0x910 <__stack+0x11>
+ 8f4:	9e f5       	brtc	.+102    	; 0x95c <__stack+0x5d>
+ 8f6:	27 c1       	rjmp	.+590    	; 0xb46 <__fp_zero>
+ 8f8:	0e f4       	brtc	.+2      	; 0x8fc <__addsf3x+0x1c>
+ 8fa:	e0 95       	com	r30
+ 8fc:	0b 2e       	mov	r0, r27
+ 8fe:	ba 2f       	mov	r27, r26
+ 900:	a0 2d       	mov	r26, r0
+ 902:	0b 01       	movw	r0, r22
+ 904:	b9 01       	movw	r22, r18
+ 906:	90 01       	movw	r18, r0
+ 908:	0c 01       	movw	r0, r24
+ 90a:	ca 01       	movw	r24, r20
+ 90c:	a0 01       	movw	r20, r0
+ 90e:	11 24       	eor	r1, r1
+ 910:	ff 27       	eor	r31, r31
+ 912:	59 1b       	sub	r21, r25
+ 914:	99 f0       	breq	.+38     	; 0x93c <__stack+0x3d>
+ 916:	59 3f       	cpi	r21, 0xF9	; 249
+ 918:	50 f4       	brcc	.+20     	; 0x92e <__stack+0x2f>
+ 91a:	50 3e       	cpi	r21, 0xE0	; 224
+ 91c:	68 f1       	brcs	.+90     	; 0x978 <__stack+0x79>
+ 91e:	1a 16       	cp	r1, r26
+ 920:	f0 40       	sbci	r31, 0x00	; 0
+ 922:	a2 2f       	mov	r26, r18
+ 924:	23 2f       	mov	r18, r19
+ 926:	34 2f       	mov	r19, r20
+ 928:	44 27       	eor	r20, r20
+ 92a:	58 5f       	subi	r21, 0xF8	; 248
+ 92c:	f3 cf       	rjmp	.-26     	; 0x914 <__stack+0x15>
+ 92e:	46 95       	lsr	r20
+ 930:	37 95       	ror	r19
+ 932:	27 95       	ror	r18
+ 934:	a7 95       	ror	r26
+ 936:	f0 40       	sbci	r31, 0x00	; 0
+ 938:	53 95       	inc	r21
+ 93a:	c9 f7       	brne	.-14     	; 0x92e <__stack+0x2f>
+ 93c:	7e f4       	brtc	.+30     	; 0x95c <__stack+0x5d>
+ 93e:	1f 16       	cp	r1, r31
+ 940:	ba 0b       	sbc	r27, r26
+ 942:	62 0b       	sbc	r22, r18
+ 944:	73 0b       	sbc	r23, r19
+ 946:	84 0b       	sbc	r24, r20
+ 948:	ba f0       	brmi	.+46     	; 0x978 <__stack+0x79>
+ 94a:	91 50       	subi	r25, 0x01	; 1
+ 94c:	a1 f0       	breq	.+40     	; 0x976 <__stack+0x77>
+ 94e:	ff 0f       	add	r31, r31
+ 950:	bb 1f       	adc	r27, r27
+ 952:	66 1f       	adc	r22, r22
+ 954:	77 1f       	adc	r23, r23
+ 956:	88 1f       	adc	r24, r24
+ 958:	c2 f7       	brpl	.-16     	; 0x94a <__stack+0x4b>
+ 95a:	0e c0       	rjmp	.+28     	; 0x978 <__stack+0x79>
+ 95c:	ba 0f       	add	r27, r26
+ 95e:	62 1f       	adc	r22, r18
+ 960:	73 1f       	adc	r23, r19
+ 962:	84 1f       	adc	r24, r20
+ 964:	48 f4       	brcc	.+18     	; 0x978 <__stack+0x79>
+ 966:	87 95       	ror	r24
+ 968:	77 95       	ror	r23
+ 96a:	67 95       	ror	r22
+ 96c:	b7 95       	ror	r27
+ 96e:	f7 95       	ror	r31
+ 970:	9e 3f       	cpi	r25, 0xFE	; 254
+ 972:	08 f0       	brcs	.+2      	; 0x976 <__stack+0x77>
+ 974:	b3 cf       	rjmp	.-154    	; 0x8dc <__addsf3+0x1e>
+ 976:	93 95       	inc	r25
+ 978:	88 0f       	add	r24, r24
+ 97a:	08 f0       	brcs	.+2      	; 0x97e <__stack+0x7f>
+ 97c:	99 27       	eor	r25, r25
+ 97e:	ee 0f       	add	r30, r30
+ 980:	97 95       	ror	r25
+ 982:	87 95       	ror	r24
+ 984:	08 95       	ret
+
+00000986 <__cmpsf2>:
+ 986:	71 d0       	rcall	.+226    	; 0xa6a <__fp_cmp>
+ 988:	08 f4       	brcc	.+2      	; 0x98c <__cmpsf2+0x6>
+ 98a:	81 e0       	ldi	r24, 0x01	; 1
+ 98c:	08 95       	ret
+
+0000098e <__fixsfsi>:
+ 98e:	04 d0       	rcall	.+8      	; 0x998 <__fixunssfsi>
+ 990:	68 94       	set
+ 992:	b1 11       	cpse	r27, r1
+ 994:	d9 c0       	rjmp	.+434    	; 0xb48 <__fp_szero>
+ 996:	08 95       	ret
+
+00000998 <__fixunssfsi>:
+ 998:	bc d0       	rcall	.+376    	; 0xb12 <__fp_splitA>
+ 99a:	88 f0       	brcs	.+34     	; 0x9be <__fixunssfsi+0x26>
+ 99c:	9f 57       	subi	r25, 0x7F	; 127
+ 99e:	90 f0       	brcs	.+36     	; 0x9c4 <__fixunssfsi+0x2c>
+ 9a0:	b9 2f       	mov	r27, r25
+ 9a2:	99 27       	eor	r25, r25
+ 9a4:	b7 51       	subi	r27, 0x17	; 23
+ 9a6:	a0 f0       	brcs	.+40     	; 0x9d0 <__fixunssfsi+0x38>
+ 9a8:	d1 f0       	breq	.+52     	; 0x9de <__fixunssfsi+0x46>
+ 9aa:	66 0f       	add	r22, r22
+ 9ac:	77 1f       	adc	r23, r23
+ 9ae:	88 1f       	adc	r24, r24
+ 9b0:	99 1f       	adc	r25, r25
+ 9b2:	1a f0       	brmi	.+6      	; 0x9ba <__fixunssfsi+0x22>
+ 9b4:	ba 95       	dec	r27
+ 9b6:	c9 f7       	brne	.-14     	; 0x9aa <__fixunssfsi+0x12>
+ 9b8:	12 c0       	rjmp	.+36     	; 0x9de <__fixunssfsi+0x46>
+ 9ba:	b1 30       	cpi	r27, 0x01	; 1
+ 9bc:	81 f0       	breq	.+32     	; 0x9de <__fixunssfsi+0x46>
+ 9be:	c3 d0       	rcall	.+390    	; 0xb46 <__fp_zero>
+ 9c0:	b1 e0       	ldi	r27, 0x01	; 1
+ 9c2:	08 95       	ret
+ 9c4:	c0 c0       	rjmp	.+384    	; 0xb46 <__fp_zero>
+ 9c6:	67 2f       	mov	r22, r23
+ 9c8:	78 2f       	mov	r23, r24
+ 9ca:	88 27       	eor	r24, r24
+ 9cc:	b8 5f       	subi	r27, 0xF8	; 248
+ 9ce:	39 f0       	breq	.+14     	; 0x9de <__fixunssfsi+0x46>
+ 9d0:	b9 3f       	cpi	r27, 0xF9	; 249
+ 9d2:	cc f3       	brlt	.-14     	; 0x9c6 <__fixunssfsi+0x2e>
+ 9d4:	86 95       	lsr	r24
+ 9d6:	77 95       	ror	r23
+ 9d8:	67 95       	ror	r22
+ 9da:	b3 95       	inc	r27
+ 9dc:	d9 f7       	brne	.-10     	; 0x9d4 <__fixunssfsi+0x3c>
+ 9de:	3e f4       	brtc	.+14     	; 0x9ee <__fixunssfsi+0x56>
+ 9e0:	90 95       	com	r25
+ 9e2:	80 95       	com	r24
+ 9e4:	70 95       	com	r23
+ 9e6:	61 95       	neg	r22
+ 9e8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 9ea:	8f 4f       	sbci	r24, 0xFF	; 255
+ 9ec:	9f 4f       	sbci	r25, 0xFF	; 255
+ 9ee:	08 95       	ret
+
+000009f0 <__floatunsisf>:
+ 9f0:	e8 94       	clt
+ 9f2:	09 c0       	rjmp	.+18     	; 0xa06 <__floatsisf+0x12>
+
+000009f4 <__floatsisf>:
+ 9f4:	97 fb       	bst	r25, 7
+ 9f6:	3e f4       	brtc	.+14     	; 0xa06 <__floatsisf+0x12>
+ 9f8:	90 95       	com	r25
+ 9fa:	80 95       	com	r24
+ 9fc:	70 95       	com	r23
+ 9fe:	61 95       	neg	r22
+ a00:	7f 4f       	sbci	r23, 0xFF	; 255
+ a02:	8f 4f       	sbci	r24, 0xFF	; 255
+ a04:	9f 4f       	sbci	r25, 0xFF	; 255
+ a06:	99 23       	and	r25, r25
+ a08:	a9 f0       	breq	.+42     	; 0xa34 <__floatsisf+0x40>
+ a0a:	f9 2f       	mov	r31, r25
+ a0c:	96 e9       	ldi	r25, 0x96	; 150
+ a0e:	bb 27       	eor	r27, r27
+ a10:	93 95       	inc	r25
+ a12:	f6 95       	lsr	r31
+ a14:	87 95       	ror	r24
+ a16:	77 95       	ror	r23
+ a18:	67 95       	ror	r22
+ a1a:	b7 95       	ror	r27
+ a1c:	f1 11       	cpse	r31, r1
+ a1e:	f8 cf       	rjmp	.-16     	; 0xa10 <__floatsisf+0x1c>
+ a20:	fa f4       	brpl	.+62     	; 0xa60 <__floatsisf+0x6c>
+ a22:	bb 0f       	add	r27, r27
+ a24:	11 f4       	brne	.+4      	; 0xa2a <__floatsisf+0x36>
+ a26:	60 ff       	sbrs	r22, 0
+ a28:	1b c0       	rjmp	.+54     	; 0xa60 <__floatsisf+0x6c>
+ a2a:	6f 5f       	subi	r22, 0xFF	; 255
+ a2c:	7f 4f       	sbci	r23, 0xFF	; 255
+ a2e:	8f 4f       	sbci	r24, 0xFF	; 255
+ a30:	9f 4f       	sbci	r25, 0xFF	; 255
+ a32:	16 c0       	rjmp	.+44     	; 0xa60 <__floatsisf+0x6c>
+ a34:	88 23       	and	r24, r24
+ a36:	11 f0       	breq	.+4      	; 0xa3c <__floatsisf+0x48>
+ a38:	96 e9       	ldi	r25, 0x96	; 150
+ a3a:	11 c0       	rjmp	.+34     	; 0xa5e <__floatsisf+0x6a>
+ a3c:	77 23       	and	r23, r23
+ a3e:	21 f0       	breq	.+8      	; 0xa48 <__floatsisf+0x54>
+ a40:	9e e8       	ldi	r25, 0x8E	; 142
+ a42:	87 2f       	mov	r24, r23
+ a44:	76 2f       	mov	r23, r22
+ a46:	05 c0       	rjmp	.+10     	; 0xa52 <__floatsisf+0x5e>
+ a48:	66 23       	and	r22, r22
+ a4a:	71 f0       	breq	.+28     	; 0xa68 <__floatsisf+0x74>
+ a4c:	96 e8       	ldi	r25, 0x86	; 134
+ a4e:	86 2f       	mov	r24, r22
+ a50:	70 e0       	ldi	r23, 0x00	; 0
+ a52:	60 e0       	ldi	r22, 0x00	; 0
+ a54:	2a f0       	brmi	.+10     	; 0xa60 <__floatsisf+0x6c>
+ a56:	9a 95       	dec	r25
+ a58:	66 0f       	add	r22, r22
+ a5a:	77 1f       	adc	r23, r23
+ a5c:	88 1f       	adc	r24, r24
+ a5e:	da f7       	brpl	.-10     	; 0xa56 <__floatsisf+0x62>
+ a60:	88 0f       	add	r24, r24
+ a62:	96 95       	lsr	r25
+ a64:	87 95       	ror	r24
+ a66:	97 f9       	bld	r25, 7
+ a68:	08 95       	ret
+
+00000a6a <__fp_cmp>:
+ a6a:	99 0f       	add	r25, r25
+ a6c:	00 08       	sbc	r0, r0
+ a6e:	55 0f       	add	r21, r21
+ a70:	aa 0b       	sbc	r26, r26
+ a72:	e0 e8       	ldi	r30, 0x80	; 128
+ a74:	fe ef       	ldi	r31, 0xFE	; 254
+ a76:	16 16       	cp	r1, r22
+ a78:	17 06       	cpc	r1, r23
+ a7a:	e8 07       	cpc	r30, r24
+ a7c:	f9 07       	cpc	r31, r25
+ a7e:	c0 f0       	brcs	.+48     	; 0xab0 <__fp_cmp+0x46>
+ a80:	12 16       	cp	r1, r18
+ a82:	13 06       	cpc	r1, r19
+ a84:	e4 07       	cpc	r30, r20
+ a86:	f5 07       	cpc	r31, r21
+ a88:	98 f0       	brcs	.+38     	; 0xab0 <__fp_cmp+0x46>
+ a8a:	62 1b       	sub	r22, r18
+ a8c:	73 0b       	sbc	r23, r19
+ a8e:	84 0b       	sbc	r24, r20
+ a90:	95 0b       	sbc	r25, r21
+ a92:	39 f4       	brne	.+14     	; 0xaa2 <__fp_cmp+0x38>
+ a94:	0a 26       	eor	r0, r26
+ a96:	61 f0       	breq	.+24     	; 0xab0 <__fp_cmp+0x46>
+ a98:	23 2b       	or	r18, r19
+ a9a:	24 2b       	or	r18, r20
+ a9c:	25 2b       	or	r18, r21
+ a9e:	21 f4       	brne	.+8      	; 0xaa8 <__fp_cmp+0x3e>
+ aa0:	08 95       	ret
+ aa2:	0a 26       	eor	r0, r26
+ aa4:	09 f4       	brne	.+2      	; 0xaa8 <__fp_cmp+0x3e>
+ aa6:	a1 40       	sbci	r26, 0x01	; 1
+ aa8:	a6 95       	lsr	r26
+ aaa:	8f ef       	ldi	r24, 0xFF	; 255
+ aac:	81 1d       	adc	r24, r1
+ aae:	81 1d       	adc	r24, r1
+ ab0:	08 95       	ret
+
+00000ab2 <__fp_inf>:
+ ab2:	97 f9       	bld	r25, 7
+ ab4:	9f 67       	ori	r25, 0x7F	; 127
+ ab6:	80 e8       	ldi	r24, 0x80	; 128
+ ab8:	70 e0       	ldi	r23, 0x00	; 0
+ aba:	60 e0       	ldi	r22, 0x00	; 0
+ abc:	08 95       	ret
+
+00000abe <__fp_nan>:
+ abe:	9f ef       	ldi	r25, 0xFF	; 255
+ ac0:	80 ec       	ldi	r24, 0xC0	; 192
+ ac2:	08 95       	ret
+
+00000ac4 <__fp_pscA>:
+ ac4:	00 24       	eor	r0, r0
+ ac6:	0a 94       	dec	r0
+ ac8:	16 16       	cp	r1, r22
+ aca:	17 06       	cpc	r1, r23
+ acc:	18 06       	cpc	r1, r24
+ ace:	09 06       	cpc	r0, r25
+ ad0:	08 95       	ret
+
+00000ad2 <__fp_pscB>:
+ ad2:	00 24       	eor	r0, r0
+ ad4:	0a 94       	dec	r0
+ ad6:	12 16       	cp	r1, r18
+ ad8:	13 06       	cpc	r1, r19
+ ada:	14 06       	cpc	r1, r20
+ adc:	05 06       	cpc	r0, r21
+ ade:	08 95       	ret
+
+00000ae0 <__fp_round>:
+ ae0:	09 2e       	mov	r0, r25
+ ae2:	03 94       	inc	r0
+ ae4:	00 0c       	add	r0, r0
+ ae6:	11 f4       	brne	.+4      	; 0xaec <__fp_round+0xc>
+ ae8:	88 23       	and	r24, r24
+ aea:	52 f0       	brmi	.+20     	; 0xb00 <__fp_round+0x20>
+ aec:	bb 0f       	add	r27, r27
+ aee:	40 f4       	brcc	.+16     	; 0xb00 <__fp_round+0x20>
+ af0:	bf 2b       	or	r27, r31
+ af2:	11 f4       	brne	.+4      	; 0xaf8 <__fp_round+0x18>
+ af4:	60 ff       	sbrs	r22, 0
+ af6:	04 c0       	rjmp	.+8      	; 0xb00 <__fp_round+0x20>
+ af8:	6f 5f       	subi	r22, 0xFF	; 255
+ afa:	7f 4f       	sbci	r23, 0xFF	; 255
+ afc:	8f 4f       	sbci	r24, 0xFF	; 255
+ afe:	9f 4f       	sbci	r25, 0xFF	; 255
+ b00:	08 95       	ret
+
+00000b02 <__fp_split3>:
+ b02:	57 fd       	sbrc	r21, 7
+ b04:	90 58       	subi	r25, 0x80	; 128
+ b06:	44 0f       	add	r20, r20
+ b08:	55 1f       	adc	r21, r21
+ b0a:	59 f0       	breq	.+22     	; 0xb22 <__fp_splitA+0x10>
+ b0c:	5f 3f       	cpi	r21, 0xFF	; 255
+ b0e:	71 f0       	breq	.+28     	; 0xb2c <__fp_splitA+0x1a>
+ b10:	47 95       	ror	r20
+
+00000b12 <__fp_splitA>:
+ b12:	88 0f       	add	r24, r24
+ b14:	97 fb       	bst	r25, 7
+ b16:	99 1f       	adc	r25, r25
+ b18:	61 f0       	breq	.+24     	; 0xb32 <__fp_splitA+0x20>
+ b1a:	9f 3f       	cpi	r25, 0xFF	; 255
+ b1c:	79 f0       	breq	.+30     	; 0xb3c <__fp_splitA+0x2a>
+ b1e:	87 95       	ror	r24
+ b20:	08 95       	ret
+ b22:	12 16       	cp	r1, r18
+ b24:	13 06       	cpc	r1, r19
+ b26:	14 06       	cpc	r1, r20
+ b28:	55 1f       	adc	r21, r21
+ b2a:	f2 cf       	rjmp	.-28     	; 0xb10 <__fp_split3+0xe>
+ b2c:	46 95       	lsr	r20
+ b2e:	f1 df       	rcall	.-30     	; 0xb12 <__fp_splitA>
+ b30:	08 c0       	rjmp	.+16     	; 0xb42 <__fp_splitA+0x30>
+ b32:	16 16       	cp	r1, r22
+ b34:	17 06       	cpc	r1, r23
+ b36:	18 06       	cpc	r1, r24
+ b38:	99 1f       	adc	r25, r25
+ b3a:	f1 cf       	rjmp	.-30     	; 0xb1e <__fp_splitA+0xc>
+ b3c:	86 95       	lsr	r24
+ b3e:	71 05       	cpc	r23, r1
+ b40:	61 05       	cpc	r22, r1
+ b42:	08 94       	sec
+ b44:	08 95       	ret
+
+00000b46 <__fp_zero>:
+ b46:	e8 94       	clt
+
+00000b48 <__fp_szero>:
+ b48:	bb 27       	eor	r27, r27
+ b4a:	66 27       	eor	r22, r22
+ b4c:	77 27       	eor	r23, r23
+ b4e:	cb 01       	movw	r24, r22
+ b50:	97 f9       	bld	r25, 7
+ b52:	08 95       	ret
+
+00000b54 <__gesf2>:
+ b54:	8a df       	rcall	.-236    	; 0xa6a <__fp_cmp>
+ b56:	08 f4       	brcc	.+2      	; 0xb5a <__gesf2+0x6>
+ b58:	8f ef       	ldi	r24, 0xFF	; 255
+ b5a:	08 95       	ret
+
+00000b5c <__mulsf3>:
+ b5c:	0b d0       	rcall	.+22     	; 0xb74 <__mulsf3x>
+ b5e:	c0 cf       	rjmp	.-128    	; 0xae0 <__fp_round>
+ b60:	b1 df       	rcall	.-158    	; 0xac4 <__fp_pscA>
+ b62:	28 f0       	brcs	.+10     	; 0xb6e <__mulsf3+0x12>
+ b64:	b6 df       	rcall	.-148    	; 0xad2 <__fp_pscB>
+ b66:	18 f0       	brcs	.+6      	; 0xb6e <__mulsf3+0x12>
+ b68:	95 23       	and	r25, r21
+ b6a:	09 f0       	breq	.+2      	; 0xb6e <__mulsf3+0x12>
+ b6c:	a2 cf       	rjmp	.-188    	; 0xab2 <__fp_inf>
+ b6e:	a7 cf       	rjmp	.-178    	; 0xabe <__fp_nan>
+ b70:	11 24       	eor	r1, r1
+ b72:	ea cf       	rjmp	.-44     	; 0xb48 <__fp_szero>
+
+00000b74 <__mulsf3x>:
+ b74:	c6 df       	rcall	.-116    	; 0xb02 <__fp_split3>
+ b76:	a0 f3       	brcs	.-24     	; 0xb60 <__mulsf3+0x4>
+
+00000b78 <__mulsf3_pse>:
+ b78:	95 9f       	mul	r25, r21
+ b7a:	d1 f3       	breq	.-12     	; 0xb70 <__mulsf3+0x14>
+ b7c:	95 0f       	add	r25, r21
+ b7e:	50 e0       	ldi	r21, 0x00	; 0
+ b80:	55 1f       	adc	r21, r21
+ b82:	62 9f       	mul	r22, r18
+ b84:	f0 01       	movw	r30, r0
+ b86:	72 9f       	mul	r23, r18
+ b88:	bb 27       	eor	r27, r27
+ b8a:	f0 0d       	add	r31, r0
+ b8c:	b1 1d       	adc	r27, r1
+ b8e:	63 9f       	mul	r22, r19
+ b90:	aa 27       	eor	r26, r26
+ b92:	f0 0d       	add	r31, r0
+ b94:	b1 1d       	adc	r27, r1
+ b96:	aa 1f       	adc	r26, r26
+ b98:	64 9f       	mul	r22, r20
+ b9a:	66 27       	eor	r22, r22
+ b9c:	b0 0d       	add	r27, r0
+ b9e:	a1 1d       	adc	r26, r1
+ ba0:	66 1f       	adc	r22, r22
+ ba2:	82 9f       	mul	r24, r18
+ ba4:	22 27       	eor	r18, r18
+ ba6:	b0 0d       	add	r27, r0
+ ba8:	a1 1d       	adc	r26, r1
+ baa:	62 1f       	adc	r22, r18
+ bac:	73 9f       	mul	r23, r19
+ bae:	b0 0d       	add	r27, r0
+ bb0:	a1 1d       	adc	r26, r1
+ bb2:	62 1f       	adc	r22, r18
+ bb4:	83 9f       	mul	r24, r19
+ bb6:	a0 0d       	add	r26, r0
+ bb8:	61 1d       	adc	r22, r1
+ bba:	22 1f       	adc	r18, r18
+ bbc:	74 9f       	mul	r23, r20
+ bbe:	33 27       	eor	r19, r19
+ bc0:	a0 0d       	add	r26, r0
+ bc2:	61 1d       	adc	r22, r1
+ bc4:	23 1f       	adc	r18, r19
+ bc6:	84 9f       	mul	r24, r20
+ bc8:	60 0d       	add	r22, r0
+ bca:	21 1d       	adc	r18, r1
+ bcc:	82 2f       	mov	r24, r18
+ bce:	76 2f       	mov	r23, r22
+ bd0:	6a 2f       	mov	r22, r26
+ bd2:	11 24       	eor	r1, r1
+ bd4:	9f 57       	subi	r25, 0x7F	; 127
+ bd6:	50 40       	sbci	r21, 0x00	; 0
+ bd8:	8a f0       	brmi	.+34     	; 0xbfc <__mulsf3_pse+0x84>
+ bda:	e1 f0       	breq	.+56     	; 0xc14 <__mulsf3_pse+0x9c>
+ bdc:	88 23       	and	r24, r24
+ bde:	4a f0       	brmi	.+18     	; 0xbf2 <__mulsf3_pse+0x7a>
+ be0:	ee 0f       	add	r30, r30
+ be2:	ff 1f       	adc	r31, r31
+ be4:	bb 1f       	adc	r27, r27
+ be6:	66 1f       	adc	r22, r22
+ be8:	77 1f       	adc	r23, r23
+ bea:	88 1f       	adc	r24, r24
+ bec:	91 50       	subi	r25, 0x01	; 1
+ bee:	50 40       	sbci	r21, 0x00	; 0
+ bf0:	a9 f7       	brne	.-22     	; 0xbdc <__mulsf3_pse+0x64>
+ bf2:	9e 3f       	cpi	r25, 0xFE	; 254
+ bf4:	51 05       	cpc	r21, r1
+ bf6:	70 f0       	brcs	.+28     	; 0xc14 <__mulsf3_pse+0x9c>
+ bf8:	5c cf       	rjmp	.-328    	; 0xab2 <__fp_inf>
+ bfa:	a6 cf       	rjmp	.-180    	; 0xb48 <__fp_szero>
+ bfc:	5f 3f       	cpi	r21, 0xFF	; 255
+ bfe:	ec f3       	brlt	.-6      	; 0xbfa <__mulsf3_pse+0x82>
+ c00:	98 3e       	cpi	r25, 0xE8	; 232
+ c02:	dc f3       	brlt	.-10     	; 0xbfa <__mulsf3_pse+0x82>
+ c04:	86 95       	lsr	r24
+ c06:	77 95       	ror	r23
+ c08:	67 95       	ror	r22
+ c0a:	b7 95       	ror	r27
+ c0c:	f7 95       	ror	r31
+ c0e:	e7 95       	ror	r30
+ c10:	9f 5f       	subi	r25, 0xFF	; 255
+ c12:	c1 f7       	brne	.-16     	; 0xc04 <__mulsf3_pse+0x8c>
+ c14:	fe 2b       	or	r31, r30
+ c16:	88 0f       	add	r24, r24
+ c18:	91 1d       	adc	r25, r1
+ c1a:	96 95       	lsr	r25
+ c1c:	87 95       	ror	r24
+ c1e:	97 f9       	bld	r25, 7
+ c20:	08 95       	ret
+
+00000c22 <__tablejump2__>:
+ c22:	ee 0f       	add	r30, r30
+ c24:	ff 1f       	adc	r31, r31
+
+00000c26 <__tablejump__>:
+ c26:	05 90       	lpm	r0, Z+
+ c28:	f4 91       	lpm	r31, Z
+ c2a:	e0 2d       	mov	r30, r0
+ c2c:	09 94       	ijmp
+
+00000c2e <__do_global_dtors>:
+ c2e:	10 e0       	ldi	r17, 0x00	; 0
+ c30:	ca e6       	ldi	r28, 0x6A	; 106
+ c32:	d0 e0       	ldi	r29, 0x00	; 0
+ c34:	04 c0       	rjmp	.+8      	; 0xc3e <__do_global_dtors+0x10>
+ c36:	fe 01       	movw	r30, r28
+ c38:	0e 94 13 06 	call	0xc26	; 0xc26 <__tablejump__>
+ c3c:	22 96       	adiw	r28, 0x02	; 2
+ c3e:	cc 36       	cpi	r28, 0x6C	; 108
+ c40:	d1 07       	cpc	r29, r17
+ c42:	c9 f7       	brne	.-14     	; 0xc36 <__do_global_dtors+0x8>
+ c44:	f8 94       	cli
+
+00000c46 <__stop_program>:
+ c46:	ff cf       	rjmp	.-2      	; 0xc46 <__stop_program>
